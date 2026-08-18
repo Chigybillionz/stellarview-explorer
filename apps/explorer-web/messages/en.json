@@ -259,7 +259,8 @@
       "noActivity": "No token activity",
       "noActivityDesc": "No events found for this contract in the last 7 days.",
       "recentEvents": "Tap any card to flip and see details · {count} recent events"
-    }
+    },
+    "readWriteConsole": "Read/Write"
   },
   "watchlist": {
     "title": "Watchlist",

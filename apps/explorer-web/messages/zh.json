@@ -259,7 +259,8 @@
       "noActivity": "无代币活动",
       "noActivityDesc": "过去 7 天内未找到此合约的事件。",
       "recentEvents": "点击任意卡片查看详情 · {count} 个最近事件"
-    }
+    },
+    "readWriteConsole": "读写控制台"
   },
   "watchlist": {
     "title": "关注列表",

@@ -259,7 +259,8 @@
       "noActivity": "토큰 활동 없음",
       "noActivityDesc": "최근 7일 동안 이 계약의 이벤트가 없습니다.",
       "recentEvents": "카드를 탭하여 세부 정보 확인 · 최근 {count}개 이벤트"
-    }
+    },
+    "readWriteConsole": "읽기/쓰기"
   },
   "watchlist": {
     "title": "관심목록",

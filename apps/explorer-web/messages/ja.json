@@ -259,7 +259,8 @@
       "noActivity": "トークンアクティビティなし",
       "noActivityDesc": "過去 7 日間でこのコントラクトのイベントが見つかりませんでした。",
       "recentEvents": "カードをタップして詳細を確認 · {count} 件の最近のイベント"
-    }
+    },
+    "readWriteConsole": "読み取り/書き込み"
   },
   "watchlist": {
     "title": "ウォッチリスト",

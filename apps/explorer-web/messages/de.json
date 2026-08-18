@@ -259,7 +259,8 @@
       "noActivity": "Keine Token-Aktivität",
       "noActivityDesc": "Für diesen Vertrag wurden in den letzten 7 Tagen keine Ereignisse gefunden.",
       "recentEvents": "Karte antippen, um Details zu sehen · {count} aktuelle Ereignisse"
-    }
+    },
+    "readWriteConsole": "Lesen/Schreiben"
   },
   "watchlist": {
     "title": "Merkliste",

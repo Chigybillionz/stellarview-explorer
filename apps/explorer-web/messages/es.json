@@ -259,7 +259,8 @@
       "noActivity": "Sin actividad de token",
       "noActivityDesc": "No se encontraron eventos para este contrato en los últimos 7 días.",
       "recentEvents": "Toca cualquier tarjeta para ver detalles · {count} eventos recientes"
-    }
+    },
+    "readWriteConsole": "Lectura/Escritura"
   },
   "watchlist": {
     "title": "Favoritos",

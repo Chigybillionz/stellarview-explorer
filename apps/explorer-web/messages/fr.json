@@ -259,7 +259,8 @@
       "noActivity": "Aucune activité de jeton",
       "noActivityDesc": "Aucun événement trouvé pour ce contrat au cours des 7 derniers jours.",
       "recentEvents": "Appuyez sur une carte pour voir les détails · {count} événements récents"
-    }
+    },
+    "readWriteConsole": "Lecture/Écriture"
   },
   "watchlist": {
     "title": "Favoris",
