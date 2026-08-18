@@ -937,7 +937,9 @@
     "tabs": {
       "overview": "Übersicht",
       "transactions": "Transaktionen",
-      "network": "Netzwerk"
+      "network": "Netzwerk",
+      "history": "Verlauf",
+      "topN": "Top N"
     },
     "enableBanner": {
       "title": "Aktivieren Sie den Analysemodus für erweiterte Funktionen",
@@ -947,7 +949,13 @@
       "latestLedger": "Neuester Ledger",
       "ledgerTxCount": "Ledger-TX-Anzahl",
       "ledgerOperations": "Ledger-Operationen",
-      "protocolVersion": "Protokollversion"
+      "protocolVersion": "Protokollversion",
+      "txVolume": "Transaktionsvolumen",
+      "classicFees": "Klassische Gebühren",
+      "sorobanFees": "Soroban Ressourcen-Gebühren",
+      "activeAccounts": "Aktive Konten",
+      "newAccounts": "Neue Konten",
+      "assetSupply": "Asset-Angebot"
     },
     "statistics": {
       "operationsPerTx": "Operationen pro Transaktion",
@@ -978,6 +986,36 @@
       "transactions": "Transaktionen",
       "operations": "Operationen",
       "protocolVersion": "Protokollversion"
+    },
+    "resolution": {
+      "hourly": "Stündlich",
+      "daily": "Täglich",
+      "weekly": "Wöchentlich"
+    },
+    "range": {
+      "24h": "24h",
+      "7d": "7T",
+      "30d": "30T",
+      "90d": "90T",
+      "1y": "1J",
+      "all": "Alle"
+    },
+    "topN": {
+      "contracts": "Aktivste Verträge",
+      "assets": "Meistübertragene Assets",
+      "highestFees": "Transaktionen mit den höchsten Gebühren",
+      "rank": "Rang",
+      "entity": "Entität",
+      "value": "Wert"
+    },
+    "notAvailable": {
+      "title": "Noch nicht verfügbar",
+      "description": "Diese Metrik wird verfügbar sein, sobald der Indexer historische Daten verarbeitet hat."
+    },
+    "export": {
+      "csv": "CSV exportieren",
+      "json": "JSON exportieren",
+      "disabled": "Export für diese Metrik nicht verfügbar"
     }
   },
   "crossNetwork": {

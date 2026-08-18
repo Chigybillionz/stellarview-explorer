@@ -937,7 +937,9 @@
     "tabs": {
       "overview": "概览",
       "transactions": "交易",
-      "network": "网络"
+      "network": "网络",
+      "history": "历史记录",
+      "topN": "前 N 名"
     },
     "enableBanner": {
       "title": "启用分析模式以获取高级功能",
@@ -947,7 +949,13 @@
       "latestLedger": "最新账本",
       "ledgerTxCount": "账本交易数",
       "ledgerOperations": "账本操作数",
-      "protocolVersion": "协议版本"
+      "protocolVersion": "协议版本",
+      "txVolume": "交易量",
+      "classicFees": "经典手续费",
+      "sorobanFees": "Soroban 资源手续费",
+      "activeAccounts": "活跃账户",
+      "newAccounts": "新账户",
+      "assetSupply": "资产供应量"
     },
     "statistics": {
       "operationsPerTx": "每笔交易的操作数",
@@ -978,6 +986,36 @@
       "transactions": "交易",
       "operations": "操作",
       "protocolVersion": "协议版本"
+    },
+    "resolution": {
+      "hourly": "每小时",
+      "daily": "每天",
+      "weekly": "每周"
+    },
+    "range": {
+      "24h": "24小时",
+      "7d": "7天",
+      "30d": "30天",
+      "90d": "90天",
+      "1y": "1年",
+      "all": "全部"
+    },
+    "topN": {
+      "contracts": "最活跃的合约",
+      "assets": "转账最多的资产",
+      "highestFees": "最高手续费交易",
+      "rank": "排名",
+      "entity": "实体",
+      "value": "值"
+    },
+    "notAvailable": {
+      "title": "尚不可用",
+      "description": "一旦索引器处理了历史数据，此指标将可用。"
+    },
+    "export": {
+      "csv": "导出 CSV",
+      "json": "导出 JSON",
+      "disabled": "此指标不支持导出"
     }
   },
   "crossNetwork": {

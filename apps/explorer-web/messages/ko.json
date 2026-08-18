@@ -937,7 +937,9 @@
     "tabs": {
       "overview": "개요",
       "transactions": "트랜잭션",
-      "network": "네트워크"
+      "network": "네트워크",
+      "history": "기록",
+      "topN": "상위 N"
     },
     "enableBanner": {
       "title": "고급 기능을 위해 분석 모드를 활성화하세요",
@@ -947,7 +949,13 @@
       "latestLedger": "최신 원장",
       "ledgerTxCount": "원장 TX 수",
       "ledgerOperations": "원장 오퍼레이션",
-      "protocolVersion": "프로토콜 버전"
+      "protocolVersion": "프로토콜 버전",
+      "txVolume": "거래량",
+      "classicFees": "클래식 수수료",
+      "sorobanFees": "Soroban 리소스 수수료",
+      "activeAccounts": "활성 계정",
+      "newAccounts": "신규 계정",
+      "assetSupply": "자산 공급량"
     },
     "statistics": {
       "operationsPerTx": "트랜잭션당 오퍼레이션",
@@ -978,6 +986,36 @@
       "transactions": "트랜잭션",
       "operations": "오퍼레이션",
       "protocolVersion": "프로토콜 버전"
+    },
+    "resolution": {
+      "hourly": "시간별",
+      "daily": "일별",
+      "weekly": "주별"
+    },
+    "range": {
+      "24h": "24시간",
+      "7d": "7일",
+      "30d": "30일",
+      "90d": "90일",
+      "1y": "1년",
+      "all": "전체"
+    },
+    "topN": {
+      "contracts": "가장 활성화된 계약",
+      "assets": "가장 많이 전송된 자산",
+      "highestFees": "가장 높은 수수료의 거래",
+      "rank": "순위",
+      "entity": "엔터티",
+      "value": "값"
+    },
+    "notAvailable": {
+      "title": "아직 사용할 수 없음",
+      "description": "인덱서가 과거 데이터를 처리하면 이 지표를 사용할 수 있습니다."
+    },
+    "export": {
+      "csv": "CSV 내보내기",
+      "json": "JSON 내보내기",
+      "disabled": "이 지표는 내보내기를 지원하지 않습니다"
     }
   },
   "crossNetwork": {

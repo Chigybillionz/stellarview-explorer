@@ -937,7 +937,9 @@
     "tabs": {
       "overview": "Visão Geral",
       "transactions": "Transações",
-      "network": "Rede"
+      "network": "Rede",
+      "history": "Histórico",
+      "topN": "Top N"
     },
     "enableBanner": {
       "title": "Ative o Modo Analítico para recursos avançados",
@@ -947,7 +949,13 @@
       "latestLedger": "Último Ledger",
       "ledgerTxCount": "TX do Ledger",
       "ledgerOperations": "Operações do Ledger",
-      "protocolVersion": "Versão do Protocolo"
+      "protocolVersion": "Versão do Protocolo",
+      "txVolume": "Volume de Transações",
+      "classicFees": "Taxas Clássicas",
+      "sorobanFees": "Taxas de Recursos Soroban",
+      "activeAccounts": "Contas Ativas",
+      "newAccounts": "Novas Contas",
+      "assetSupply": "Oferta de Ativos"
     },
     "statistics": {
       "operationsPerTx": "Operações por Transação",
@@ -978,6 +986,36 @@
       "transactions": "Transações",
       "operations": "Operações",
       "protocolVersion": "Versão do Protocolo"
+    },
+    "resolution": {
+      "hourly": "Por Hora",
+      "daily": "Diário",
+      "weekly": "Semanal"
+    },
+    "range": {
+      "24h": "24H",
+      "7d": "7D",
+      "30d": "30D",
+      "90d": "90D",
+      "1y": "1A",
+      "all": "Tudo"
+    },
+    "topN": {
+      "contracts": "Contratos Mais Ativos",
+      "assets": "Ativos Mais Transferidos",
+      "highestFees": "Transações com Maiores Taxas",
+      "rank": "Classificação",
+      "entity": "Entidade",
+      "value": "Valor"
+    },
+    "notAvailable": {
+      "title": "Ainda não disponível",
+      "description": "Esta métrica estará disponível assim que o indexador processar os dados históricos."
+    },
+    "export": {
+      "csv": "Exportar CSV",
+      "json": "Exportar JSON",
+      "disabled": "Exportação indisponível para esta métrica"
     }
   },
   "crossNetwork": {

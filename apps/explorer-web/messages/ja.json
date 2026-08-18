@@ -937,7 +937,9 @@
     "tabs": {
       "overview": "概要",
       "transactions": "トランザクション",
-      "network": "ネットワーク"
+      "network": "ネットワーク",
+      "history": "履歴",
+      "topN": "トップ N"
     },
     "enableBanner": {
       "title": "高度な機能のために分析モードを有効化",
@@ -947,7 +949,13 @@
       "latestLedger": "最新レジャー",
       "ledgerTxCount": "レジャーTX数",
       "ledgerOperations": "レジャー操作数",
-      "protocolVersion": "プロトコルバージョン"
+      "protocolVersion": "プロトコルバージョン",
+      "txVolume": "取引量",
+      "classicFees": "クラシック手数料",
+      "sorobanFees": "Soroban リソース手数料",
+      "activeAccounts": "アクティブアカウント",
+      "newAccounts": "新規アカウント",
+      "assetSupply": "資産供給量"
     },
     "statistics": {
       "operationsPerTx": "トランザクションあたりの操作数",
@@ -978,6 +986,36 @@
       "transactions": "トランザクション",
       "operations": "操作",
       "protocolVersion": "プロトコルバージョン"
+    },
+    "resolution": {
+      "hourly": "毎時",
+      "daily": "毎日",
+      "weekly": "毎週"
+    },
+    "range": {
+      "24h": "24時間",
+      "7d": "7日",
+      "30d": "30日",
+      "90d": "90日",
+      "1y": "1年",
+      "all": "すべて"
+    },
+    "topN": {
+      "contracts": "最もアクティブなコントラクト",
+      "assets": "最も送金された資産",
+      "highestFees": "最も手数料が高い取引",
+      "rank": "ランク",
+      "entity": "エンティティ",
+      "value": "値"
+    },
+    "notAvailable": {
+      "title": "まだ利用できません",
+      "description": "インデクサーが過去のデータを処理すると、この指標が利用可能になります。"
+    },
+    "export": {
+      "csv": "CSVエクスポート",
+      "json": "JSONエクスポート",
+      "disabled": "この指標ではエクスポートは利用できません"
     }
   },
   "crossNetwork": {

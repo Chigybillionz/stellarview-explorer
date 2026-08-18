@@ -937,7 +937,9 @@
     "tabs": {
       "overview": "Panoramica",
       "transactions": "Transazioni",
-      "network": "Rete"
+      "network": "Rete",
+      "history": "Cronologia",
+      "topN": "Top N"
     },
     "enableBanner": {
       "title": "Attiva la modalità analitica per funzionalità avanzate",
@@ -947,7 +949,13 @@
       "latestLedger": "Ultimo registro",
       "ledgerTxCount": "Conteggio TX registro",
       "ledgerOperations": "Operazioni registro",
-      "protocolVersion": "Versione protocollo"
+      "protocolVersion": "Versione protocollo",
+      "txVolume": "Volume delle Transazioni",
+      "classicFees": "Commissioni Classiche",
+      "sorobanFees": "Commissioni Risorse Soroban",
+      "activeAccounts": "Account Attivi",
+      "newAccounts": "Nuovi Account",
+      "assetSupply": "Offerta di Asset"
     },
     "statistics": {
       "operationsPerTx": "Operazioni per transazione",
@@ -978,6 +986,36 @@
       "transactions": "Transazioni",
       "operations": "Operazioni",
       "protocolVersion": "Versione protocollo"
+    },
+    "resolution": {
+      "hourly": "Oraria",
+      "daily": "Giornaliera",
+      "weekly": "Settimanale"
+    },
+    "range": {
+      "24h": "24h",
+      "7d": "7G",
+      "30d": "30G",
+      "90d": "90G",
+      "1y": "1A",
+      "all": "Tutti"
+    },
+    "topN": {
+      "contracts": "Contratti Più Attivi",
+      "assets": "Asset Più Trasferiti",
+      "highestFees": "Transazioni con Commissioni Più Alte",
+      "rank": "Rango",
+      "entity": "Entità",
+      "value": "Valore"
+    },
+    "notAvailable": {
+      "title": "Non ancora disponibile",
+      "description": "Questa metrica sarà disponibile una volta che l'indicizzatore avrà elaborato i dati storici."
+    },
+    "export": {
+      "csv": "Esporta CSV",
+      "json": "Esporta JSON",
+      "disabled": "Esportazione non disponibile per questa metrica"
     }
   },
   "crossNetwork": {
