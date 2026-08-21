@@ -13,6 +13,7 @@ import { useContractCode } from "@/lib/hooks";
 import { useNetwork } from "@/lib/providers";
 import { decodeContractSpec } from "@/lib/stellar/spec-decoder";
 import * as freighter from "@stellar/freighter-api";
+import { useTranslations } from "next-intl";
 import { Search, Terminal, Wallet, LogOut, CheckCircle2 } from "lucide-react";
 
 interface ContractConsoleProps {
@@ -20,6 +21,7 @@ interface ContractConsoleProps {
 }
 
 export function ContractConsole({ contractId }: ContractConsoleProps) {
+  const t = useTranslations("contract.console");
   const { network } = useNetwork();
   const { data: codeData, isLoading, error, refetch } = useContractCode(contractId);
 
@@ -40,7 +42,7 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
     try {
       const isConnected = await freighter.isConnected();
       if (!isConnected) {
-        setWalletError("Freighter wallet extension is not installed or enabled in browser.");
+        setWalletError(t("walletNotInstalled"));
         return;
       }
 
@@ -59,12 +61,12 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
         if (fallbackAddr) {
           setConnectedPublicKey(fallbackAddr);
         } else {
-          setWalletError("Unable to retrieve public key from wallet.");
+          setWalletError(t("unableToRetrieveKey"));
         }
       }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
-      setWalletError(msg || "Failed to connect Stellar wallet.");
+      setWalletError(msg || t("failedToConnectWallet"));
     } finally {
       setIsConnecting(false);
     }
@@ -77,26 +79,20 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
   if (isLoading) return <LoadingCard rows={6} />;
 
   if (error) {
-    return (
-      <ErrorState title="Failed to load contract code" message={error.message} onRetry={refetch} />
-    );
+    return <ErrorState title={t("failedToLoadCode")} message={error.message} onRetry={refetch} />;
   }
 
   if (!codeData || codeData.type === "sac") {
     return (
-      <EmptyState
-        title="Native Stellar Asset Contract"
-        description="Native Stellar Asset Contracts use standard SEP-41 token operations without a custom WASM contract spec."
-        icon="file"
-      />
+      <EmptyState title={t("nativeSACTitle")} description={t("nativeSACDescription")} icon="file" />
     );
   }
 
   if (!spec || spec.functions.length === 0) {
     return (
       <EmptyState
-        title="No Functions Found in Contract Spec"
-        description="Unable to parse function signatures from the contract's contractspecv0 WASM section."
+        title={t("noFunctionsTitle")}
+        description={t("noFunctionsDescription")}
         icon="file"
       />
     );
@@ -117,10 +113,14 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
                 <Terminal className="text-primary size-5" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold">Contract Console (SEP-48 Spec)</h3>
+                <h3 className="text-sm font-semibold">{t("title")}</h3>
                 <p className="text-muted-foreground text-xs">
-                  {spec.functions.length} Functions • {spec.structs.size} Structs •{" "}
-                  {spec.unions.size} Unions • {spec.enums.size} Enums
+                  {t("specSummary", {
+                    functions: spec.functions.length,
+                    structs: spec.structs.size,
+                    unions: spec.unions.size,
+                    enums: spec.enums.size,
+                  })}
                 </p>
               </div>
             </div>
@@ -141,7 +141,7 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
                     size="icon"
                     className="text-muted-foreground hover:text-destructive size-8"
                     onClick={handleDisconnectWallet}
-                    title="Disconnect Wallet"
+                    title={t("disconnectWallet")}
                   >
                     <LogOut className="size-4" />
                   </Button>
@@ -155,7 +155,7 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
                   className="gap-1.5 text-xs"
                 >
                   <Wallet className="size-3.5" />
-                  {isConnecting ? "Connecting..." : "Connect Wallet"}
+                  {isConnecting ? t("connecting") : t("connectWallet")}
                 </Button>
               )}
             </div>
@@ -170,7 +170,7 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
         <Search className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
         <Input
           type="text"
-          placeholder="Filter functions by name..."
+          placeholder={t("filterFunctions")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-9 text-xs"
@@ -180,8 +180,8 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
       {/* Functions List */}
       {filteredFunctions.length === 0 ? (
         <EmptyState
-          title="No Matching Functions"
-          description={`No functions found matching "${searchQuery}".`}
+          title={t("noMatchingFunctions")}
+          description={t("noMatchingFunctionsDescription", { query: searchQuery })}
           icon="file"
         />
       ) : (

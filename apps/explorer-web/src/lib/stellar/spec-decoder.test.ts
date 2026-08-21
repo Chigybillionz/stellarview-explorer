@@ -7,6 +7,7 @@ import {
   encodeInputToScVal,
   decodeResultNative,
 } from "./spec-decoder";
+import { buildSampleWasm, buildSampleSpecEntries } from "./__fixtures__/sample-contract-spec";
 
 describe("spec-decoder", () => {
   it("decodes functions, structs, unions, enums, and error enums", () => {
@@ -187,5 +188,164 @@ describe("spec-decoder", () => {
     const scVal = nativeToScVal(42, { type: "u32" });
     const native = decodeResultNative(scVal);
     expect(native).toBe(42);
+  });
+
+  describe("real WASM fixture", () => {
+    it("parses a realistic contractspecv0 WASM into a full ParsedSpec", () => {
+      const wasm = buildSampleWasm();
+      const spec = decodeContractSpec(wasm);
+
+      // Should have 5 functions: initialize, transfer, balance, batch_transfer, get_metadata
+      expect(spec.functions).toHaveLength(5);
+
+      const fnNames = spec.functions.map((f) => f.name);
+      expect(fnNames).toContain("initialize");
+      expect(fnNames).toContain("transfer");
+      expect(fnNames).toContain("balance");
+      expect(fnNames).toContain("batch_transfer");
+      expect(fnNames).toContain("get_metadata");
+
+      // Struct: TokenMetadata with 3 fields
+      expect(spec.structs.has("TokenMetadata")).toBe(true);
+      const tokenMeta = spec.structs.get("TokenMetadata")!;
+      expect(tokenMeta.fields).toHaveLength(3);
+      expect(tokenMeta.fields.map((f) => f.name)).toEqual(["name", "symbol", "decimals"]);
+
+      // Enum: ContractState with 4 cases
+      expect(spec.enums.has("ContractState")).toBe(true);
+      const stateEnum = spec.enums.get("ContractState")!;
+      expect(stateEnum.cases).toHaveLength(4);
+      expect(stateEnum.cases.map((c) => c.name)).toEqual([
+        "Uninitialized",
+        "Active",
+        "Frozen",
+        "Stopped",
+      ]);
+
+      // Union: TransferResult with 3 cases
+      expect(spec.unions.has("TransferResult")).toBe(true);
+      const transferUnion = spec.unions.get("TransferResult")!;
+      expect(transferUnion.cases).toHaveLength(3);
+      expect(transferUnion.cases[0]).toEqual({
+        kind: "void",
+        name: "Success",
+        doc: "Transfer succeeded",
+      });
+
+      // Error Enum: TokenError with 4 cases
+      expect(spec.errorEnums.has("TokenError")).toBe(true);
+      const tokenError = spec.errorEnums.get("TokenError")!;
+      expect(tokenError.cases).toHaveLength(4);
+
+      // UDT registry should have all 4 types
+      expect(spec.udtRegistry.size).toBe(4);
+    });
+
+    it("correctly decodes function with struct UDT parameter", () => {
+      const entries = buildSampleSpecEntries();
+      const parsed = parseScSpecEntries(entries);
+
+      const initFn = parsed.functions.find((f) => f.name === "initialize")!;
+      expect(initFn).toBeDefined();
+      expect(initFn.inputs).toHaveLength(2);
+      expect(initFn.inputs[0].type).toEqual({ kind: "address" });
+      expect(initFn.inputs[1].type).toEqual({ kind: "udt", name: "TokenMetadata" });
+    });
+
+    it("correctly decodes function with Vec<Tuple> parameter", () => {
+      const entries = buildSampleSpecEntries();
+      const parsed = parseScSpecEntries(entries);
+
+      const batchFn = parsed.functions.find((f) => f.name === "batch_transfer")!;
+      expect(batchFn).toBeDefined();
+      expect(batchFn.inputs).toHaveLength(2);
+
+      const transfersParam = batchFn.inputs[1];
+      expect(transfersParam.type).toEqual({
+        kind: "vec",
+        elementType: {
+          kind: "tuple",
+          elementTypes: [{ kind: "address" }, { kind: "i128" }],
+        },
+      });
+    });
+
+    it("correctly decodes function returning a union UDT", () => {
+      const entries = buildSampleSpecEntries();
+      const parsed = parseScSpecEntries(entries);
+
+      const transferFn = parsed.functions.find((f) => f.name === "transfer")!;
+      expect(transferFn).toBeDefined();
+      expect(transferFn.outputs).toHaveLength(1);
+      expect(transferFn.outputs[0]).toEqual({ kind: "udt", name: "TransferResult" });
+    });
+  });
+
+  describe("encodeInputToScVal edge cases", () => {
+    it("encodes option type as void when null", () => {
+      const udtRegistry = new Map();
+      const scVal = encodeInputToScVal(
+        null,
+        { kind: "option", valueType: { kind: "string" } },
+        udtRegistry
+      );
+      expect(scVal.switch().name).toBe("scvVoid");
+    });
+
+    it("encodes option type with inner value", () => {
+      const udtRegistry = new Map();
+      const scVal = encodeInputToScVal(
+        "hello",
+        { kind: "option", valueType: { kind: "string" } },
+        udtRegistry
+      );
+      expect(scVal.switch().name).toBe("scvString");
+    });
+
+    it("encodes map type with key-value pairs", () => {
+      const udtRegistry = new Map();
+      const scVal = encodeInputToScVal(
+        { foo: 42, bar: 100 },
+        { kind: "map", keyType: { kind: "string" }, valueType: { kind: "u32" } },
+        udtRegistry
+      );
+      expect(scVal.switch().name).toBe("scvMap");
+    });
+
+    it("encodes enum UDT as u32", () => {
+      const udtRegistry = new Map();
+      udtRegistry.set("Role", {
+        udtKind: "enum",
+        name: "Role",
+        lib: "",
+        doc: "",
+        cases: [
+          { name: "Admin", doc: "", value: 0 },
+          { name: "User", doc: "", value: 1 },
+        ],
+      });
+      const scVal = encodeInputToScVal(1, { kind: "udt", name: "Role" }, udtRegistry);
+      expect(scVal.switch().name).toBe("scvU32");
+    });
+
+    it("encodes union UDT with void variant", () => {
+      const udtRegistry = new Map();
+      udtRegistry.set("Status", {
+        udtKind: "union",
+        name: "Status",
+        lib: "",
+        doc: "",
+        cases: [
+          { kind: "void", name: "Active", doc: "" },
+          { kind: "tuple", name: "Error", doc: "", types: [{ kind: "string" }] },
+        ],
+      });
+      const scVal = encodeInputToScVal(
+        { variant: "Active" },
+        { kind: "udt", name: "Status" },
+        udtRegistry
+      );
+      expect(scVal.switch().name).toBe("scvVec");
+    });
   });
 });

@@ -177,6 +177,16 @@ type XdrReaderConstructor = new (buffer: Buffer) => XdrReaderInstance;
 
 let cachedXdrReaderClass: XdrReaderConstructor | null = null;
 
+/**
+ * Obtain a reusable XDR reader class by monkey-patching xdr.ScSpecEntry.read
+ * to capture the internal Reader constructor from the first argument.
+ *
+ * FRAGILE: This relies on an undocumented stellar-sdk internal (the XDR Reader
+ * class passed as the first arg to .read()). A stellar-sdk upgrade could change
+ * the reader implementation or call signature, which would silently break this
+ * extraction. If decoding fails after an SDK upgrade, this function is the first
+ * place to investigate.
+ */
 function getXdrReaderClass(): XdrReaderConstructor {
   if (cachedXdrReaderClass) return cachedXdrReaderClass;
 

@@ -17,6 +17,7 @@ import {
 } from "@/lib/stellar/contract-client";
 import type { NetworkKey } from "@/types";
 import { Play, Send, Check, Copy, AlertTriangle, Loader2, Wallet, Info } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface FunctionFormProps {
   contractId: string;
@@ -35,6 +36,8 @@ export function FunctionForm({
   connectedPublicKey,
   onConnectWallet,
 }: FunctionFormProps) {
+  const t = useTranslations("contract.console");
+
   const [paramValues, setParamValues] = useState<Record<string, unknown>>(() => {
     const initial: Record<string, unknown> = {};
     for (const input of fn.inputs) {
@@ -158,7 +161,7 @@ export function FunctionForm({
         {fn.inputs.length > 0 ? (
           <div className="border-border/60 bg-muted/10 space-y-4 rounded-lg border p-4">
             <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
-              Input Parameters
+              {t("inputParameters")}
             </p>
             <div className="space-y-4">
               {fn.inputs.map((input) => (
@@ -176,7 +179,7 @@ export function FunctionForm({
           </div>
         ) : (
           <div className="border-border text-muted-foreground rounded-lg border border-dashed p-3 text-center text-xs">
-            No parameters required for this function.
+            {t("noParametersRequired")}
           </div>
         )}
 
@@ -195,7 +198,7 @@ export function FunctionForm({
               ) : (
                 <Play className="text-chart-1 size-3.5" />
               )}
-              Simulate Read
+              {t("simulateRead")}
             </Button>
 
             <Button
@@ -210,7 +213,7 @@ export function FunctionForm({
               ) : (
                 <Info className="text-chart-2 size-3.5" />
               )}
-              Simulate Resources
+              {t("simulateResources")}
             </Button>
           </div>
 
@@ -228,7 +231,7 @@ export function FunctionForm({
                 ) : (
                   <Send className="size-3.5" />
                 )}
-                Submit Write
+                {t("submitWrite")}
               </Button>
             ) : (
               <Button
@@ -238,7 +241,7 @@ export function FunctionForm({
                 className="gap-1.5 border-amber-500/40 text-xs text-amber-600 hover:bg-amber-500/10 dark:text-amber-400"
               >
                 <Wallet className="size-3.5" />
-                Connect Wallet to Write
+                {t("connectWalletToWrite")}
               </Button>
             )}
           </div>
@@ -247,17 +250,18 @@ export function FunctionForm({
         {/* Write Simulation Resources Badge */}
         {writeSimResult && writeSimResult.success && (
           <div className="bg-muted/40 flex flex-wrap items-center gap-2 rounded-md p-2.5 text-xs">
+            {" "}
             <Badge variant="outline" className="font-mono text-[10px]">
-              Estimated Min Fee: {writeSimResult.minFee || "100"} stroops
+              {t("estimatedMinFee", { fee: writeSimResult.minFee || "100" })}
             </Badge>
             {writeSimResult.cpuInstructions && (
               <Badge variant="secondary" className="font-mono text-[10px]">
-                CPU: {writeSimResult.cpuInstructions} instrs
+                {t("cpuInstructions", { cpu: writeSimResult.cpuInstructions })}
               </Badge>
             )}
             {writeSimResult.memoryBytes && (
               <Badge variant="secondary" className="font-mono text-[10px]">
-                Read bytes: {writeSimResult.memoryBytes} B
+                {t("readBytes", { bytes: writeSimResult.memoryBytes })}
               </Badge>
             )}
           </div>
@@ -267,7 +271,7 @@ export function FunctionForm({
         {readResult && !readResult.success && (
           <Alert variant="destructive">
             <AlertTriangle className="size-4" />
-            <AlertTitle>Simulation Error</AlertTitle>
+            <AlertTitle>{t("simulationError")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">{readResult.error}</AlertDescription>
           </Alert>
         )}
@@ -276,7 +280,7 @@ export function FunctionForm({
         {writeSimResult && !writeSimResult.success && (
           <Alert variant="destructive">
             <AlertTriangle className="size-4" />
-            <AlertTitle>Resource Estimation Error</AlertTitle>
+            <AlertTitle>{t("resourceEstimationError")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">
               {writeSimResult.error}
             </AlertDescription>
@@ -287,7 +291,7 @@ export function FunctionForm({
         {writeExecResult && !writeExecResult.success && (
           <Alert variant="destructive">
             <AlertTriangle className="size-4" />
-            <AlertTitle>Submission Failure</AlertTitle>
+            <AlertTitle>{t("submissionFailure")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">
               {writeExecResult.error}
             </AlertDescription>
@@ -299,7 +303,7 @@ export function FunctionForm({
           <div className="space-y-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-4 dark:border-emerald-500/20">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                Returned Result:
+                {t("returnedResult")}
               </span>
               {readResult.resultXdr && (
                 <Button
@@ -310,11 +314,11 @@ export function FunctionForm({
                 >
                   {copied ? (
                     <>
-                      <Check className="size-3 text-green-500" /> Copied XDR
+                      <Check className="size-3 text-green-500" /> {t("copiedXDR")}
                     </>
                   ) : (
                     <>
-                      <Copy className="size-3" /> Copy XDR
+                      <Copy className="size-3" /> {t("copyXDR")}
                     </>
                   )}
                 </Button>
@@ -325,7 +329,7 @@ export function FunctionForm({
               <pre>
                 {readResult.result !== null && readResult.result !== undefined
                   ? JSON.stringify(readResult.result, null, 2)
-                  : "void (null)"}
+                  : t("voidNull")}
               </pre>
             </div>
           </div>
@@ -336,7 +340,7 @@ export function FunctionForm({
           <div className="space-y-2 rounded-lg border border-blue-500/30 bg-blue-500/5 p-4 dark:border-blue-500/20">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">
-                Transaction Executed Successfully:
+                {t("transactionExecuted")}
               </span>
               {writeExecResult.txHash && (
                 <span className="text-muted-foreground font-mono text-xs">

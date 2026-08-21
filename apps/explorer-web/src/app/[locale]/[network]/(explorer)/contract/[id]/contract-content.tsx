@@ -6,7 +6,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PageHeader } from "@/components/layout/page-header";
 import { CrossNetworkBanner } from "@/components/common/cross-network-banner";
 import { CopyContextButton } from "@/components/common/copy-context-button";
-import { ContractConsole, ContractEventDetails, ContractTransactions, TokenGallery } from "@/components/contracts";
+import {
+  ContractConsole,
+  ContractEventDetails,
+  ContractTransactions,
+  TokenGallery,
+} from "@/components/contracts";
 import { useContractInfo } from "@/lib/hooks";
 import { isValidContractId } from "@/lib/utils";
 import { Activity, Database, Code, ArrowRightLeft, Zap, LayoutGrid, Terminal } from "lucide-react";
