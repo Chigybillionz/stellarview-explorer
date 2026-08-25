@@ -10,6 +10,7 @@
     "transactions": "Transaktionen",
     "accounts": "Konten",
     "assets": "Assets",
+    "pairs": "Paare",
     "contracts": "Verträge",
     "analytics": "Analytik",
     "learn": "Lernen",
@@ -50,7 +51,10 @@
     "tryAgain": "Erneut versuchen",
     "clearAll": "Alles löschen",
     "remove": "Entfernen",
-    "watch": "Beobachten"
+    "watch": "Beobachten",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {page} von {total}"
   },
   "errors": {
     "somethingWentWrong": "Etwas ist schief gelaufen",
@@ -158,6 +162,54 @@
     "supply": "Angebot",
     "price": "Preis"
   },
+  "pairs": {
+    "metaTitle": "Handelspaare | StellarView Explorer",
+    "metaDescription": "Entdecke Handelspaare auf der Stellar-DEX. Sieh Volumen, Liquidität und Preis für jedes Paar.",
+    "title": "Handelspaare",
+    "subtitle": "Entdecke Handelspaare auf der dezentralen Börse von Stellar",
+    "findPair": "Paar Finden",
+    "searchPlaceholder": "Nach Asset-Code suchen (z. B. USDC)",
+    "allPairs": "Alle Paare",
+    "aboutPairs": "Stellar-Handelspaare",
+    "aboutPairsDescription": "Handelspaare entstehen, wenn Assets auf der Stellar-DEX oder über einen Liquiditätspool getauscht werden. Nutze die Suche oder Sortierung oben, um Preis, Volumen und Liquidität zu erkunden.",
+    "notAvailable": {
+      "title": "Handelsdaten sind noch nicht verfügbar",
+      "description": "Paar-Aggregate erscheinen hier, sobald der Indexer den Handelsverlauf verarbeitet hat."
+    }
+  },
+  "pair": {
+    "pairs": "Paare",
+    "subtitle": "Handelspaar auf der Stellar-DEX",
+    "candles": "Preischart",
+    "trades": "Trades",
+    "orderbook": "Orderbuch",
+    "recentTrades": "Letzte Trades",
+    "failedToLoadTrades": "Trades konnten nicht geladen werden",
+    "noTrades": "Noch keine Trades",
+    "noTradesDesc": "Für dieses Paar wurden keine Trades erfasst.",
+    "time": "Zeit",
+    "price": "Preis",
+    "amount": "Menge",
+    "amountOf": "Menge ({code})",
+    "failedToLoadOrderbook": "Orderbuch konnte nicht geladen werden",
+    "emptyOrderbook": "Leeres Orderbuch",
+    "emptyOrderbookDesc": "Keine offenen Orders für dieses Paar.",
+    "bestBid": "Bestes Gebot",
+    "midPrice": "Mittelpreis",
+    "bestAsk": "Bester Briefkurs",
+    "bids": "Gebote",
+    "asks": "Angebote",
+    "spread": "Spread",
+    "resolution": {
+      "1m": "1m",
+      "1h": "1h",
+      "1d": "1T"
+    },
+    "notAvailable": {
+      "title": "Handelsdaten sind noch nicht verfügbar",
+      "description": "Kerzendaten erscheinen hier, sobald der Indexer den Handelsverlauf dieses Paars verarbeitet hat."
+    }
+  },
   "contracts": {
     "metaTitle": "Smart Contracts | StellarView Explorer",
     "metaDescription": "Erkunden Sie Soroban Smart Contracts im Stellar-Netzwerk. Suchen und sehen Sie Vertragsdetails.",
@@ -260,43 +312,9 @@
       "noActivityDesc": "Für diesen Vertrag wurden in den letzten 7 Tagen keine Ereignisse gefunden.",
       "recentEvents": "Karte antippen, um Details zu sehen · {count} aktuelle Ereignisse"
     },
-    "readWriteConsole": "Lesen/Schreiben",
-    "console": {
-      "title": "Vertragskonsole (SEP-48 Spezifikation)",
-      "specSummary": "{functions} Funktionen \u2022 {structs} Structs \u2022 {unions} Unionen \u2022 {enums} Enums",
-      "connecting": "Verbinden...",
-      "connectWallet": "Wallet Verbinden",
-      "disconnectWallet": "Wallet Trennen",
-      "walletNotInstalled": "Die Freighter-Wallet-Erweiterung ist nicht installiert oder im Browser aktiviert.",
-      "unableToRetrieveKey": "Öffentlicher Schlüssel konnte nicht vom Wallet abgerufen werden.",
-      "failedToConnectWallet": "Verbindung zum Stellar-Wallet fehlgeschlagen.",
-      "failedToLoadCode": "Laden des Vertragscodes fehlgeschlagen",
-      "nativeSACTitle": "Native Stellar Asset Contract",
-      "nativeSACDescription": "Native Stellar Asset Contracts verwenden Standard-SEP-41-Token-Operationen ohne benutzerdefinierte WASM-Vertragsspezifikation.",
-      "noFunctionsTitle": "Keine Funktionen in der Vertragsspezifikation gefunden",
-      "noFunctionsDescription": "Funktionssignaturen aus dem contractspecv0 WASM-Abschnitt des Vertrags konnten nicht analysiert werden.",
-      "filterFunctions": "Funktionen nach Name filtern...",
-      "noMatchingFunctions": "Keine passenden Funktionen",
-      "noMatchingFunctionsDescription": "Keine Funktionen gefunden, die \"{query}\" entsprechen.",
-      "inputParameters": "Eingabeparameter",
-      "noParametersRequired": "Für diese Funktion sind keine Parameter erforderlich.",
-      "simulateRead": "Lesevorgang Simulieren",
-      "simulateResources": "Ressourcen Simulieren",
-      "submitWrite": "Schreibvorgang Senden",
-      "connectWalletToWrite": "Wallet zum Schreiben Verbinden",
-      "estimatedMinFee": "Geschätzte Mindestgebühr: {fee} Stroops",
-      "cpuInstructions": "CPU: {cpu} Instrs",
-      "readBytes": "Gelesene Bytes: {bytes} B",
-      "simulationError": "Simulationsfehler",
-      "resourceEstimationError": "Ressourcen-Schätzfehler",
-      "submissionFailure": "Sendungsfehler",
-      "genericFailure": "Vorgang fehlgeschlagen",
-      "returnedResult": "Rückgabeergebnis:",
-      "copyXDR": "XDR Kopieren",
-      "copiedXDR": "XDR Kopiert",
-      "transactionExecuted": "Transaktion Erfolgreich Ausgeführt:",
-      "voidNull": "leer (null)"
-    }
+    "underlyingAsset": "Zugrunde Liegender Vermögenswert",
+    "tradingPairsAndPools": "Handelspaare & Pools",
+    "viewPools": "Pools ansehen"
   },
   "watchlist": {
     "title": "Merkliste",
@@ -383,7 +401,8 @@
     "failedToLoadData": "Dateneinträge konnten nicht geladen werden",
     "noDataEntries": "Keine Dateneinträge",
     "noDataEntriesDesc": "Dieses Konto hat keine gespeicherten Schlüssel-Wert-Daten.",
-    "dataEntries": "Dateneinträge ({count})"
+    "dataEntries": "Dateneinträge ({count})",
+    "poolShares": "Liquiditätspool-Anteile"
   },
   "operations": {
     "create_account": "Konto erstellen",
@@ -636,11 +655,17 @@
     "xlmTitle": "Stellar Lumens",
     "xlmSubtitle": "XLM - Natives Stellar Asset",
     "aboutXlm": "Über XLM",
+    "overview": "Übersicht",
     "xlmDescription": "XLM (Stellar Lumens) ist das native Asset des Stellar-Netzwerks. Es dient mehreren Zwecken:",
     "xlmPurpose1": "Transaktionsgebühren bezahlen (typischerweise 0.00001 XLM pro Operation)",
     "xlmPurpose2": "Mindestkontostände aufrechterhalten (Basisreserve)",
     "xlmPurpose3": "Spam verhindern durch Anforderung kleiner Beträge für Kontoerstellung",
-    "xlmPurpose4": "Brückenwährung für Asset-übergreifende Transaktionen über DEX"
+    "xlmPurpose4": "Brückenwährung für Asset-übergreifende Transaktionen über DEX",
+    "pools": "Pools",
+    "tradingPairs": "Handelspaare",
+    "noPools": "Keine Liquiditätspools",
+    "noPoolsDesc": "Dieser Vermögenswert befindet sich noch in keinem Liquiditätspool.",
+    "failedToLoadPools": "Liquiditätspools konnten nicht geladen werden"
   },
   "assetsMeta": {
     "stellarLumens": "Stellar Lumens",
@@ -694,6 +719,14 @@
       "holders": "Inhaber",
       "auth": "Auth",
       "noAssetsFound": "Keine Assets gefunden"
+    },
+    "pairTable": {
+      "pair": "Paar",
+      "price": "Preis",
+      "change24h": "24-Std.-Änderung",
+      "volume24h": "24-Std.-Volumen",
+      "liquidity": "Liquidität",
+      "noPairsFound": "Keine Paare gefunden"
     },
     "globalSearch": {
       "search": "Suchen",
@@ -1080,6 +1113,23 @@
     "pool": "Pool",
     "failedToLoadTx": "Transaktionen konnten nicht geladen werden",
     "noTransactions": "Keine Transaktionen",
-    "noTransactionsDesc": "Für diesen Liquiditätspool wurden keine Transaktionen gefunden."
+    "noTransactionsDesc": "Für diesen Liquiditätspool wurden keine Transaktionen gefunden.",
+    "depthChart": "Pool-Tiefe",
+    "activity": "Aktivität",
+    "depositType": "Einzahlung",
+    "withdrawType": "Auszahlung",
+    "tradeType": "Handel",
+    "createdType": "Pool Erstellt",
+    "removedType": "Pool Entfernt",
+    "revokedType": "Reserven Widerrufen",
+    "noActivity": "Noch keine Aktivität",
+    "noActivityDesc": "Für diesen Pool wurden keine Einzahlungen, Auszahlungen oder Trades erfasst.",
+    "failedToLoadActivity": "Aktivität konnte nicht geladen werden",
+    "sharesReceived": "Erhaltene Anteile",
+    "sharesRedeemed": "Eingelöste Anteile",
+    "notAvailable": {
+      "title": "Pool-Verlauf ist noch nicht verfügbar",
+      "description": "Die historische Tiefe wird hier angezeigt, sobald der Indexer die Reserven dieses Pools im Zeitverlauf verarbeitet hat."
+    }
   }
 }
