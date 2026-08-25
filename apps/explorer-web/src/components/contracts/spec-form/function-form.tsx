@@ -73,10 +73,10 @@ export function FunctionForm({
       const res = await simulateContractRead(network, contractId, fn.name, args);
       setReadResult(res);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
+      console.error("[Contract Console Catch]", err);
       setReadResult({
         success: false,
-        error: msg || "Failed to execute read call.",
+        error: "simulationError",
       });
     } finally {
       setIsLoadingRead(false);
@@ -97,10 +97,10 @@ export function FunctionForm({
       );
       setWriteSimResult(res);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
+      console.error("[Contract Console Catch]", err);
       setWriteSimResult({
         success: false,
-        error: msg || "Write simulation failed.",
+        error: "resourceEstimationError",
       });
     } finally {
       setIsSimulatingWrite(false);
@@ -126,10 +126,10 @@ export function FunctionForm({
       );
       setWriteExecResult(res);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
+      console.error("[Contract Console Catch]", err);
       setWriteExecResult({
         success: false,
-        error: msg || "Write submission failed.",
+        error: "submissionFailure",
       });
     } finally {
       setIsLoadingLoadingWrite(false);
@@ -272,7 +272,9 @@ export function FunctionForm({
           <Alert variant="destructive">
             <AlertTriangle className="size-4" />
             <AlertTitle>{t("simulationError")}</AlertTitle>
-            <AlertDescription className="font-mono text-xs">{readResult.error}</AlertDescription>
+            <AlertDescription className="font-mono text-xs">
+              {t(readResult.error as any)}
+            </AlertDescription>
           </Alert>
         )}
 
@@ -282,7 +284,7 @@ export function FunctionForm({
             <AlertTriangle className="size-4" />
             <AlertTitle>{t("resourceEstimationError")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">
-              {writeSimResult.error}
+              {t(writeSimResult.error as any)}
             </AlertDescription>
           </Alert>
         )}
@@ -293,7 +295,7 @@ export function FunctionForm({
             <AlertTriangle className="size-4" />
             <AlertTitle>{t("submissionFailure")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">
-              {writeExecResult.error}
+              {t(writeExecResult.error as any)}
             </AlertDescription>
           </Alert>
         )}

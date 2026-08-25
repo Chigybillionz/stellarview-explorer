@@ -55,11 +55,11 @@ export function getNetworkPassphrase(network: NetworkKey): string {
  */
 export function sanitizeContractError(
   error: unknown,
-  fallbackMessage = "Operation failed"
+  fallbackKey: "simulationError" | "resourceEstimationError" | "submissionFailure" | "genericFailure" = "genericFailure"
 ): string {
   console.error("[Contract Console Observability]", error);
 
-  if (!error) return fallbackMessage;
+  if (!error) return fallbackKey;
 
   const msg =
     typeof error === "string" ? error : (error as { message?: string }).message || String(error);
@@ -67,28 +67,25 @@ export function sanitizeContractError(
   if (
     msg.includes("User declined") ||
     msg.includes("User rejected") ||
-    msg.includes("Declined by user")
+    msg.includes("Declined by user") ||
+    msg.includes("Wallet") ||
+    msg.includes("Freighter") ||
+    msg.includes("TransactionFailed") ||
+    msg.includes("txFailed")
   ) {
-    return "Transaction signing request was rejected by the wallet.";
+    return "submissionFailure";
   }
 
-  if (msg.includes("ContractNotInvokable") || msg.includes("HostError")) {
-    return "Contract invocation failed during simulation. Please verify function arguments and contract state.";
+  if (
+    msg.includes("ContractNotInvokable") ||
+    msg.includes("HostError") ||
+    msg.includes("ResourceLimitExceeded") ||
+    msg.includes("BudgetExceeded")
+  ) {
+    return "simulationError";
   }
 
-  if (msg.includes("ResourceLimitExceeded") || msg.includes("BudgetExceeded")) {
-    return "Resource limit exceeded during contract simulation.";
-  }
-
-  if (msg.includes("TransactionFailed") || msg.includes("txFailed")) {
-    return "Contract execution failed on chain. Please check parameter values and authorization.";
-  }
-
-  if (msg.includes("Wallet") || msg.includes("Freighter")) {
-    return "Wallet connection or signing error. Please ensure your wallet is unlocked and connected.";
-  }
-
-  return `${fallbackMessage}: ${msg.slice(0, 120)}`;
+  return fallbackKey;
 }
 
 // Dummy source account for simulation when no wallet is connected
@@ -127,7 +124,7 @@ export async function simulateContractRead(
     if (StellarRpc.Api.isSimulationError(simRes)) {
       return {
         success: false,
-        error: sanitizeContractError(simRes.error, "Simulation failed"),
+        error: sanitizeContractError(simRes.error, "simulationError"),
         rawError: simRes,
       };
     }
@@ -152,7 +149,7 @@ export async function simulateContractRead(
   } catch (err: unknown) {
     return {
       success: false,
-      error: sanitizeContractError(err, "Failed to simulate contract read"),
+      error: sanitizeContractError(err, "simulationError"),
       rawError: err,
     };
   }
@@ -191,7 +188,7 @@ export async function simulateContractWrite(
     if (StellarRpc.Api.isSimulationError(simRes)) {
       return {
         success: false,
-        error: sanitizeContractError(simRes.error, "Write simulation failed"),
+        error: sanitizeContractError(simRes.error, "resourceEstimationError"),
         rawError: simRes,
       };
     }
@@ -227,7 +224,7 @@ export async function simulateContractWrite(
   } catch (err: unknown) {
     return {
       success: false,
-      error: sanitizeContractError(err, "Write simulation error"),
+      error: sanitizeContractError(err, "resourceEstimationError"),
       rawError: err,
     };
   }
@@ -289,7 +286,7 @@ export async function executeContractWrite(
     if (sendRes.status === "ERROR") {
       return {
         success: false,
-        error: sanitizeContractError(sendRes.errorResult, "Transaction submission failed"),
+        error: sanitizeContractError(sendRes.errorResult, "submissionFailure"),
         rawError: sendRes,
       };
     }
@@ -318,7 +315,7 @@ export async function executeContractWrite(
         return {
           success: false,
           txHash,
-          error: sanitizeContractError(statusRes.resultXdr, "Contract execution failed on chain"),
+          error: sanitizeContractError(statusRes.resultXdr, "submissionFailure"),
           rawError: statusRes,
         };
       }
@@ -332,7 +329,7 @@ export async function executeContractWrite(
   } catch (err: unknown) {
     return {
       success: false,
-      error: sanitizeContractError(err, "Failed to execute contract write"),
+      error: sanitizeContractError(err, "submissionFailure"),
       rawError: err,
     };
   }

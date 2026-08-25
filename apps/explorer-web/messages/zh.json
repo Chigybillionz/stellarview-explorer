@@ -290,6 +290,7 @@
       "simulationError": "模拟错误",
       "resourceEstimationError": "资源估算错误",
       "submissionFailure": "提交失败",
+      "genericFailure": "操作失败",
       "returnedResult": "返回结果：",
       "copyXDR": "复制 XDR",
       "copiedXDR": "XDR 已复制",

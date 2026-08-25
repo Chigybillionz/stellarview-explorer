@@ -290,6 +290,7 @@
       "simulationError": "Errore di Simulazione",
       "resourceEstimationError": "Errore di Stima Risorse",
       "submissionFailure": "Errore di Invio",
+      "genericFailure": "Operazione fallita",
       "returnedResult": "Risultato Restituito:",
       "copyXDR": "Copia XDR",
       "copiedXDR": "XDR Copiato",

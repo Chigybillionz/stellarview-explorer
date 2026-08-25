@@ -290,6 +290,7 @@
       "simulationError": "シミュレーションエラー",
       "resourceEstimationError": "リソース推定エラー",
       "submissionFailure": "送信失敗",
+      "genericFailure": "操作に失敗しました",
       "returnedResult": "返却結果:",
       "copyXDR": "XDR をコピー",
       "copiedXDR": "XDR をコピー済み",

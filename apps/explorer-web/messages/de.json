@@ -290,6 +290,7 @@
       "simulationError": "Simulationsfehler",
       "resourceEstimationError": "Ressourcen-Schätzfehler",
       "submissionFailure": "Sendungsfehler",
+      "genericFailure": "Vorgang fehlgeschlagen",
       "returnedResult": "Rückgabeergebnis:",
       "copyXDR": "XDR Kopieren",
       "copiedXDR": "XDR Kopiert",

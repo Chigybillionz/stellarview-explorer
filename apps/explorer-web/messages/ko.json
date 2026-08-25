@@ -290,6 +290,7 @@
       "simulationError": "시뮬레이션 오류",
       "resourceEstimationError": "리소스 추정 오류",
       "submissionFailure": "제출 실패",
+      "genericFailure": "작업에 실패했습니다",
       "returnedResult": "반환 결과:",
       "copyXDR": "XDR 복사",
       "copiedXDR": "XDR 복사됨",
