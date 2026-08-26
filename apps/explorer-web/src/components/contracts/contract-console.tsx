@@ -66,7 +66,7 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
       }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
-      setWalletError(msg || t("failedToConnectWallet"));
+      setWalletError(t("failedToConnectWallet"));
     } finally {
       setIsConnecting(false);
     }

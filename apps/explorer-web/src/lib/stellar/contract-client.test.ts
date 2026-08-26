@@ -100,15 +100,22 @@ describe("contract-client", () => {
     });
 
     it("returns fallback key for unknown errors without appending msg details", () => {
-      expect(sanitizeContractError("Random internal error 123", "genericFailure")).toBe("genericFailure");
-      expect(sanitizeContractError("HostError: Something went wrong", "genericFailure")).toBe("simulationError"); // still catches recognized patterns
-      expect(sanitizeContractError("Totally unknown error text", "genericFailure")).toBe("genericFailure");
+      expect(sanitizeContractError("Random internal error 123", "genericFailure")).toBe(
+        "genericFailure"
+      );
+      expect(sanitizeContractError("HostError: Something went wrong", "genericFailure")).toBe(
+        "simulationError"
+      ); // still catches recognized patterns
+      expect(sanitizeContractError("Totally unknown error text", "genericFailure")).toBe(
+        "genericFailure"
+      );
     });
 
     it("ensures raw HostError/stack trace strings do not appear in the returned message", () => {
-      const rawErrorMsg = "HostError: Error(Value(Error(Context(Instruction(12)))))\nstack backtrace:\n   0: std::panicking::begin_panic";
+      const rawErrorMsg =
+        "HostError: Error(Value(Error(Context(Instruction(12)))))\nstack backtrace:\n   0: std::panicking::begin_panic";
       const result = sanitizeContractError(rawErrorMsg, "genericFailure");
-      
+
       expect(result).toBe("simulationError");
       expect(result).not.toContain("stack backtrace");
       expect(result).not.toContain("Instruction");
@@ -224,7 +231,7 @@ describe("contract-client", () => {
     it("returns error immediately when public key is missing", async () => {
       const res = await executeContractWrite("testnet", VALID_CONTRACT_ID, "my_write", [], "");
       expect(res.success).toBe(false);
-      expect(res.error).toContain("public key is required");
+      expect(res.error).toBe("walletPublicKeyRequired");
     });
 
     it("returns success when transaction is prepared, signed, and successfully confirmed", async () => {
@@ -245,11 +252,17 @@ describe("contract-client", () => {
 
       vi.mocked(freighter.signTransaction).mockImplementation((xdr) => Promise.resolve(xdr));
 
-      const writePromise = executeContractWrite("testnet", VALID_CONTRACT_ID, "my_write", [], DUMMY_PUBLIC_KEY);
-      
+      const writePromise = executeContractWrite(
+        "testnet",
+        VALID_CONTRACT_ID,
+        "my_write",
+        [],
+        DUMMY_PUBLIC_KEY
+      );
+
       // Advance fake timers by 2 seconds to trigger the loop wait quickly
       await vi.advanceTimersByTimeAsync(2000);
-      
+
       const res = await writePromise;
       expect(res.success).toBe(true);
       expect(res.txHash).toBe("txhash12345");
@@ -266,7 +279,13 @@ describe("contract-client", () => {
 
       vi.mocked(freighter.signTransaction).mockRejectedValue(new Error("User declined signing"));
 
-      const res = await executeContractWrite("testnet", VALID_CONTRACT_ID, "my_write", [], DUMMY_PUBLIC_KEY);
+      const res = await executeContractWrite(
+        "testnet",
+        VALID_CONTRACT_ID,
+        "my_write",
+        [],
+        DUMMY_PUBLIC_KEY
+      );
       expect(res.success).toBe(false);
       expect(res.error).toBe("submissionFailure");
     });
@@ -285,7 +304,13 @@ describe("contract-client", () => {
 
       vi.mocked(freighter.signTransaction).mockImplementation((xdr) => Promise.resolve(xdr));
 
-      const res = await executeContractWrite("testnet", VALID_CONTRACT_ID, "my_write", [], DUMMY_PUBLIC_KEY);
+      const res = await executeContractWrite(
+        "testnet",
+        VALID_CONTRACT_ID,
+        "my_write",
+        [],
+        DUMMY_PUBLIC_KEY
+      );
       expect(res.success).toBe(false);
       expect(res.error).toBe("submissionFailure");
     });
@@ -308,7 +333,13 @@ describe("contract-client", () => {
 
       vi.mocked(freighter.signTransaction).mockImplementation((xdr) => Promise.resolve(xdr));
 
-      const writePromise = executeContractWrite("testnet", VALID_CONTRACT_ID, "my_write", [], DUMMY_PUBLIC_KEY);
+      const writePromise = executeContractWrite(
+        "testnet",
+        VALID_CONTRACT_ID,
+        "my_write",
+        [],
+        DUMMY_PUBLIC_KEY
+      );
 
       await vi.advanceTimersByTimeAsync(2000);
 

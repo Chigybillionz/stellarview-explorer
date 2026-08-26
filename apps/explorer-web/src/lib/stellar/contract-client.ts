@@ -55,7 +55,11 @@ export function getNetworkPassphrase(network: NetworkKey): string {
  */
 export function sanitizeContractError(
   error: unknown,
-  fallbackKey: "simulationError" | "resourceEstimationError" | "submissionFailure" | "genericFailure" = "genericFailure"
+  fallbackKey:
+    | "simulationError"
+    | "resourceEstimationError"
+    | "submissionFailure"
+    | "genericFailure" = "genericFailure"
 ): string {
   console.error("[Contract Console Observability]", error);
 
@@ -244,7 +248,7 @@ export async function executeContractWrite(
     if (!publicKey) {
       return {
         success: false,
-        error: "Connected wallet public key is required for write operations.",
+        error: "walletPublicKeyRequired",
       };
     }
 
@@ -276,7 +280,7 @@ export async function executeContractWrite(
     if (!signedXdr) {
       return {
         success: false,
-        error: "Wallet failed to sign transaction.",
+        error: "walletSignFailed",
       };
     }
 
