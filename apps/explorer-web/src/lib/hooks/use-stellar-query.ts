@@ -351,6 +351,15 @@ export function useDomainResolution(name: string, enabled = true) {
   });
 }
 
+// Hook for the Soroban Domains reverse lookup (address -> owned domains)
+export function useDomainsByAddress(address: string, enabled = true) {
+  const { network } = useNetwork();
+  return useQuery({
+    ...stellarQueries.domainsByAddress(network, address),
+    enabled: enabled && address.length > 0,
+  });
+}
+
 // Hook for indexer time-series analytics
 export function useIndexerTimeSeries(
   metric: import("@/lib/indexer").TimeSeriesMetric,

@@ -12,6 +12,7 @@ import {
   fetchPairs,
   fetchCandles,
   fetchPoolDepth,
+  fetchDomainsByAddress,
 } from "@/lib/indexer";
 import type {
   TimeSeriesMetric,
@@ -25,6 +26,7 @@ import type {
   PairsResponse,
   CandlesResponse,
   PoolDepthResponse,
+  DomainReverseLookup,
 } from "@/lib/indexer";
 
 // Stellar Expert API response shapes
@@ -229,6 +231,10 @@ export const stellarKeys = {
   // Soroban Domains forward resolution
   domainResolution: (network: NetworkKey, name: string) =>
     [...stellarKeys.network(network), "domain", name] as const,
+
+  // Indexer: Soroban Domains reverse lookup
+  domainsByAddress: (network: NetworkKey, address: string) =>
+    [...stellarKeys.network(network), "indexer", "domains", "address", address] as const,
 
   // Indexer analytics
   indexerTimeSeries: (
@@ -1167,6 +1173,15 @@ export const stellarQueries = {
     queryFn: (): Promise<DomainResolution> => resolveDomain(network, name),
     // Registrations expire, so this must not be cached indefinitely.
     staleTime: 60_000,
+    retry: 1,
+  }),
+
+  // Indexer: Soroban Domains reverse lookup (address -> owned domains)
+  domainsByAddress: (network: NetworkKey, address: string) => ({
+    queryKey: stellarKeys.domainsByAddress(network, address),
+    queryFn: (): Promise<IndexerResult<DomainReverseLookup>> => fetchDomainsByAddress(address),
+    // Registrations change rarely, but they do expire and transfer.
+    staleTime: 5 * 60_000,
     retry: 1,
   }),
 

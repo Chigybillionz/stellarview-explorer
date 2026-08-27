@@ -1138,5 +1138,11 @@
       "title": "资金池历史数据尚不可用",
       "description": "索引器处理完该资金池的储备历史后，深度数据将显示在此处。"
     }
+  },
+  "domains": {
+    "alsoKnownAs": "又名 {name}",
+    "notAvailable": "域名待处理",
+    "notAvailableHint": "域名数据尚不可用。索引器处理完注册表后将会显示。",
+    "more": "还有 {count} 个"
   }
 }

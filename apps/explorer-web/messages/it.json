@@ -1138,5 +1138,11 @@
       "title": "La cronologia del pool non è ancora disponibile",
       "description": "La profondità storica apparirà qui non appena l'indexer elaborerà le riserve di questo pool nel tempo."
     }
+  },
+  "domains": {
+    "alsoKnownAs": "Conosciuto anche come {name}",
+    "notAvailable": "Domini in attesa",
+    "notAvailableHint": "I dati sui domini non sono ancora disponibili. Compariranno quando l'indexer avrà elaborato il registro.",
+    "more": "+{count} altri"
   }
 }

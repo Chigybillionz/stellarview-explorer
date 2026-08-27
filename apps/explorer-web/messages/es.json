@@ -1138,5 +1138,11 @@
       "title": "El historial del pool aún no está disponible",
       "description": "La profundidad histórica aparecerá aquí una vez que el indexador procese las reservas de este pool a lo largo del tiempo."
     }
+  },
+  "domains": {
+    "alsoKnownAs": "También conocido como {name}",
+    "notAvailable": "Dominios pendientes",
+    "notAvailableHint": "Los datos de dominios aún no están disponibles. Aparecerán cuando el indexador haya procesado el registro.",
+    "more": "+{count} más"
   }
 }

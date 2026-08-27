@@ -1138,5 +1138,11 @@
       "title": "Pool-Verlauf ist noch nicht verfügbar",
       "description": "Die historische Tiefe wird hier angezeigt, sobald der Indexer die Reserven dieses Pools im Zeitverlauf verarbeitet hat."
     }
+  },
+  "domains": {
+    "alsoKnownAs": "Auch bekannt als {name}",
+    "notAvailable": "Domains ausstehend",
+    "notAvailableHint": "Domain-Daten sind noch nicht verfügbar. Sie erscheinen, sobald der Indexer das Registry verarbeitet hat.",
+    "more": "+{count} weitere"
   }
 }
