@@ -16,11 +16,12 @@
     "learn": "学ぶ",
     "watchlist": "ウォッチリスト",
     "collapse": "折りたたむ",
-    "toggleMenu": "メニュー切り替え"
+    "toggleMenu": "メニュー切り替え",
+    "domains": "ドメイン"
   },
   "search": {
     "placeholder": "トランザクション、アカウントを検索...",
-    "inputPlaceholder": "TXハッシュ、アカウント、アセット、コントラクト、レジャーで検索...",
+    "inputPlaceholder": "トランザクションハッシュ、アカウント、アセット、コントラクト、レジャー、name.xlm で検索...",
     "noResults": "結果が見つかりません。",
     "noResultsHint": "トランザクションハッシュ、アカウントアドレス、レジャー番号を試してください。",
     "searchAs": "{type} として検索",
@@ -29,7 +30,13 @@
     "quickAccess": "クイックアクセス",
     "recentTransactions": "最近のトランザクション",
     "latestLedgers": "最新レジャー",
-    "smartContracts": "スマートコントラクト"
+    "smartContracts": "スマートコントラクト",
+    "domainResolving": "ドメインを解決中...",
+    "domainResolved": "{address} を指しています",
+    "domainNotFound": "このドメインは登録されていません",
+    "domainExpired": "このドメインの登録は期限切れです",
+    "domainUnsupported": "このネットワークではドメイン解決を利用できません",
+    "domainError": "ドメインを解決できませんでした。もう一度お試しください。"
   },
   "entityTypes": {
     "transaction": "トランザクション",
@@ -37,6 +44,7 @@
     "contract": "コントラクト",
     "asset": "アセット",
     "ledger": "レジャー",
+    "domain": "ドメイン",
     "unknown": "検索"
   },
   "common": {
@@ -1197,6 +1205,60 @@
     "notAvailable": {
       "title": "プールの履歴はまだ利用できません",
       "description": "インデクサーがこのプールの準備金を時系列で処理すると、履歴の深度がここに表示されます。"
+    }
+  },
+  "domains": {
+    "alsoKnownAs": "別名 {name}",
+    "notAvailable": "ドメイン準備中",
+    "notAvailableHint": "ドメインデータはまだ利用できません。インデクサーがレジストリを処理すると表示されます。",
+    "more": "他 {count} 件",
+    "title": "ドメイン",
+    "subtitle": "ネットワークに登録された Soroban ドメイン",
+    "findDomain": "ドメインを検索",
+    "namePlaceholder": "alice.xlm",
+    "invalidName": ".xlm で終わる名前を入力してください",
+    "registered": "登録済みドメイン",
+    "noneRegistered": "ドメインが見つかりません",
+    "noneRegisteredHint": "このフィルターに一致する登録はありません。",
+    "notRegistered": "ドメインは未登録です",
+    "notRegisteredHint": "レジストリにこの名前の記録はありません。",
+    "registration": "登録情報",
+    "history": "イベント履歴",
+    "noEvents": "イベントがありません",
+    "noEventsHint": "この名前のレジストリイベントはまだインデックスされていません。",
+    "previous": "前へ",
+    "next": "次へ",
+    "pageNumber": "{page} ページ",
+    "status": {
+      "active": "有効",
+      "expired": "期限切れ",
+      "revoked": "失効"
+    },
+    "target": {
+      "account": "アカウント",
+      "contract": "コントラクト"
+    },
+    "event": {
+      "register": "登録",
+      "transfer": "移転",
+      "renew": "更新",
+      "claim": "請求",
+      "revoke": "失効"
+    },
+    "filter": {
+      "active": "有効",
+      "expired": "期限切れ",
+      "revoked": "失効",
+      "all": "すべて"
+    },
+    "field": {
+      "status": "ステータス",
+      "resolvesTo": "解決先",
+      "targetType": "対象の種類",
+      "owner": "所有者",
+      "registeredAt": "登録日",
+      "expiresAt": "有効期限",
+      "lastEventLedger": "最終イベントレジャー"
     }
   }
 }

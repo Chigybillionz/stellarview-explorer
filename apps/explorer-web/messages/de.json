@@ -16,11 +16,12 @@
     "learn": "Lernen",
     "watchlist": "Merkliste",
     "collapse": "Einklappen",
-    "toggleMenu": "Menü umschalten"
+    "toggleMenu": "Menü umschalten",
+    "domains": "Domains"
   },
   "search": {
     "placeholder": "Transaktionen, Konten suchen...",
-    "inputPlaceholder": "Nach TX-Hash, Konto, Asset, Vertrag oder Ledger suchen...",
+    "inputPlaceholder": "Suche nach Tx-Hash, Konto, Asset, Contract, Ledger oder name.xlm...",
     "noResults": "Keine Ergebnisse gefunden.",
     "noResultsHint": "Versuchen Sie einen Transaktions-Hash, eine Kontoadresse oder Ledger-Nummer.",
     "searchAs": "Suchen als {type}",
@@ -29,7 +30,13 @@
     "quickAccess": "Schnellzugriff",
     "recentTransactions": "Kürzliche Transaktionen",
     "latestLedgers": "Neueste Ledger",
-    "smartContracts": "Smart Contracts"
+    "smartContracts": "Smart Contracts",
+    "domainResolving": "Domain wird aufgelöst...",
+    "domainResolved": "Verweist auf {address}",
+    "domainNotFound": "Diese Domain ist nicht registriert",
+    "domainExpired": "Die Registrierung dieser Domain ist abgelaufen",
+    "domainUnsupported": "Domain-Auflösung ist in diesem Netzwerk nicht verfügbar",
+    "domainError": "Domain konnte nicht aufgelöst werden. Bitte erneut versuchen."
   },
   "entityTypes": {
     "transaction": "Transaktion",
@@ -37,6 +44,7 @@
     "contract": "Vertrag",
     "asset": "Asset",
     "ledger": "Ledger",
+    "domain": "Domain",
     "unknown": "Suchen"
   },
   "common": {
@@ -1197,6 +1205,60 @@
     "notAvailable": {
       "title": "Pool-Verlauf ist noch nicht verfügbar",
       "description": "Die historische Tiefe wird hier angezeigt, sobald der Indexer die Reserven dieses Pools im Zeitverlauf verarbeitet hat."
+    }
+  },
+  "domains": {
+    "alsoKnownAs": "Auch bekannt als {name}",
+    "notAvailable": "Domains ausstehend",
+    "notAvailableHint": "Domain-Daten sind noch nicht verfügbar. Sie erscheinen, sobald der Indexer das Registry verarbeitet hat.",
+    "more": "+{count} weitere",
+    "title": "Domains",
+    "subtitle": "Im Netzwerk registrierte Soroban Domains",
+    "findDomain": "Domain suchen",
+    "namePlaceholder": "alice.xlm",
+    "invalidName": "Geben Sie einen Namen ein, der auf .xlm endet",
+    "registered": "Registrierte Domains",
+    "noneRegistered": "Keine Domains gefunden",
+    "noneRegisteredHint": "Keine Registrierung entspricht diesem Filter.",
+    "notRegistered": "Domain nicht registriert",
+    "notRegisteredHint": "Das Registry hat keinen Eintrag unter diesem Namen.",
+    "registration": "Registrierung",
+    "history": "Ereignisverlauf",
+    "noEvents": "Keine Ereignisse erfasst",
+    "noEventsHint": "Für diesen Namen wurden noch keine Registry-Ereignisse indexiert.",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageNumber": "Seite {page}",
+    "status": {
+      "active": "Aktiv",
+      "expired": "Abgelaufen",
+      "revoked": "Widerrufen"
+    },
+    "target": {
+      "account": "Konto",
+      "contract": "Contract"
+    },
+    "event": {
+      "register": "Registriert",
+      "transfer": "Übertragen",
+      "renew": "Verlängert",
+      "claim": "Beansprucht",
+      "revoke": "Widerrufen"
+    },
+    "filter": {
+      "active": "Aktiv",
+      "expired": "Abgelaufen",
+      "revoked": "Widerrufen",
+      "all": "Alle"
+    },
+    "field": {
+      "status": "Status",
+      "resolvesTo": "Verweist auf",
+      "targetType": "Zieltyp",
+      "owner": "Eigentümer",
+      "registeredAt": "Registriert",
+      "expiresAt": "Läuft ab",
+      "lastEventLedger": "Letztes Ereignis-Ledger"
     }
   }
 }

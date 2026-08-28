@@ -4,12 +4,18 @@ import { getHorizonClient, getRpcClient, fetchStellarExpert } from "./client";
 import type { StellarExpertResult } from "./client";
 import { DEFAULT_PAGE_SIZE, STALE_TIME, POPULAR_ASSETS, NETWORKS } from "@/lib/constants";
 import { parseSacAssetName } from "@/lib/utils";
+import { resolveDomain } from "./domains";
+import type { DomainResolution } from "./domains";
 import {
   fetchTimeSeries,
   fetchTopN,
   fetchPairs,
   fetchCandles,
   fetchPoolDepth,
+  fetchDomainsByAddress,
+  fetchDomainsList,
+  fetchDomainDetail,
+  DOMAINS_DEFAULT_PAGE_SIZE,
 } from "@/lib/indexer";
 import type {
   TimeSeriesMetric,
@@ -23,6 +29,10 @@ import type {
   PairsResponse,
   CandlesResponse,
   PoolDepthResponse,
+  DomainReverseLookup,
+  DomainsPage,
+  DomainDetail,
+  DomainStatus,
 } from "@/lib/indexer";
 
 // Stellar Expert API response shapes
@@ -223,6 +233,19 @@ export const stellarKeys = {
     [...stellarKeys.network(network), "stellar_expert", "network_activity"] as const,
   networkStats: (network: NetworkKey) =>
     [...stellarKeys.network(network), "stellar_expert", "stats"] as const,
+
+  // Soroban Domains forward resolution
+  domainResolution: (network: NetworkKey, name: string) =>
+    [...stellarKeys.network(network), "domain", name] as const,
+
+  // Indexer: Soroban Domains reverse lookup and browsing
+  domainsByAddress: (network: NetworkKey, address: string) =>
+    [...stellarKeys.network(network), "indexer", "domains", "address", address] as const,
+
+  domainsList: (network: NetworkKey, status: DomainStatus | "all", cursor: string) =>
+    [...stellarKeys.network(network), "indexer", "domains", "list", status, cursor] as const,
+  domainDetail: (network: NetworkKey, name: string) =>
+    [...stellarKeys.network(network), "indexer", "domains", "detail", name] as const,
 
   // Indexer analytics
   indexerTimeSeries: (
@@ -1153,6 +1176,46 @@ export const stellarQueries = {
       };
     },
     staleTime: STALE_TIME,
+  }),
+
+  // Soroban Domains: forward resolution (name.xlm -> address)
+  domainResolution: (network: NetworkKey, name: string) => ({
+    queryKey: stellarKeys.domainResolution(network, name),
+    queryFn: (): Promise<DomainResolution> => resolveDomain(network, name),
+    // Registrations expire, so this must not be cached indefinitely.
+    staleTime: 60_000,
+    retry: 1,
+  }),
+
+  // Indexer: Soroban Domains reverse lookup (address -> owned domains)
+  domainsByAddress: (network: NetworkKey, address: string) => ({
+    queryKey: stellarKeys.domainsByAddress(network, address),
+    queryFn: (): Promise<IndexerResult<DomainReverseLookup>> => fetchDomainsByAddress(address),
+    // Registrations change rarely, but they do expire and transfer.
+    staleTime: 5 * 60_000,
+    retry: 1,
+  }),
+
+  // Indexer: Soroban Domains list, one cursor page at a time
+  domainsList: (
+    network: NetworkKey,
+    status: DomainStatus | "all" = "active",
+    cursor = "",
+    limit = DOMAINS_DEFAULT_PAGE_SIZE
+  ) => ({
+    queryKey: stellarKeys.domainsList(network, status, cursor),
+    queryFn: (): Promise<IndexerResult<DomainsPage>> =>
+      fetchDomainsList(status === "all" ? undefined : status, limit, cursor),
+    staleTime: 5 * 60_000,
+    retry: 1,
+  }),
+
+  // Indexer: a single Soroban Domain plus its event history
+  domainDetail: (network: NetworkKey, name: string) => ({
+    queryKey: stellarKeys.domainDetail(network, name),
+    queryFn: (): Promise<IndexerResult<DomainDetail>> => fetchDomainDetail(name),
+    staleTime: 5 * 60_000,
+    retry: 1,
   }),
 
   // Indexer: time-series analytics

@@ -16,11 +16,12 @@
     "learn": "Apprendre",
     "watchlist": "Favoris",
     "collapse": "Réduire",
-    "toggleMenu": "Basculer le menu"
+    "toggleMenu": "Basculer le menu",
+    "domains": "Domaines"
   },
   "search": {
     "placeholder": "Rechercher transactions, comptes...",
-    "inputPlaceholder": "Rechercher par hash tx, compte, actif, contrat ou registre...",
+    "inputPlaceholder": "Rechercher par hash de tx, compte, actif, contrat, registre ou name.xlm...",
     "noResults": "Aucun résultat trouvé.",
     "noResultsHint": "Essayez un hash de transaction, une adresse de compte ou un numéro de registre.",
     "searchAs": "Rechercher comme {type}",
@@ -29,7 +30,13 @@
     "quickAccess": "Accès Rapide",
     "recentTransactions": "Transactions Récentes",
     "latestLedgers": "Derniers Registres",
-    "smartContracts": "Contrats Intelligents"
+    "smartContracts": "Contrats Intelligents",
+    "domainResolving": "Résolution du domaine...",
+    "domainResolved": "Pointe vers {address}",
+    "domainNotFound": "Ce domaine n'est pas enregistré",
+    "domainExpired": "L'enregistrement de ce domaine a expiré",
+    "domainUnsupported": "La résolution de domaines n'est pas disponible sur ce réseau",
+    "domainError": "Impossible de résoudre ce domaine. Veuillez réessayer."
   },
   "entityTypes": {
     "transaction": "Transaction",
@@ -37,6 +44,7 @@
     "contract": "Contrat",
     "asset": "Actif",
     "ledger": "Registre",
+    "domain": "Domaine",
     "unknown": "Rechercher"
   },
   "common": {
@@ -1197,6 +1205,60 @@
     "notAvailable": {
       "title": "L'historique du pool n'est pas encore disponible",
       "description": "La profondeur historique apparaîtra ici une fois que l'indexeur aura traité les réserves de ce pool au fil du temps."
+    }
+  },
+  "domains": {
+    "alsoKnownAs": "Également connu sous le nom de {name}",
+    "notAvailable": "Domaines en attente",
+    "notAvailableHint": "Les données de domaines ne sont pas encore disponibles. Elles apparaîtront une fois que l'indexeur aura traité le registre.",
+    "more": "+{count} autres",
+    "title": "Domaines",
+    "subtitle": "Domaines Soroban enregistrés sur le réseau",
+    "findDomain": "Rechercher un domaine",
+    "namePlaceholder": "alice.xlm",
+    "invalidName": "Saisissez un nom se terminant par .xlm",
+    "registered": "Domaines enregistrés",
+    "noneRegistered": "Aucun domaine trouvé",
+    "noneRegisteredHint": "Aucun enregistrement ne correspond à ce filtre.",
+    "notRegistered": "Domaine non enregistré",
+    "notRegisteredHint": "Le registre ne contient aucune entrée sous ce nom.",
+    "registration": "Enregistrement",
+    "history": "Historique des événements",
+    "noEvents": "Aucun événement enregistré",
+    "noEventsHint": "Aucun événement du registre n'a encore été indexé pour ce nom.",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageNumber": "Page {page}",
+    "status": {
+      "active": "Actif",
+      "expired": "Expiré",
+      "revoked": "Révoqué"
+    },
+    "target": {
+      "account": "Compte",
+      "contract": "Contrat"
+    },
+    "event": {
+      "register": "Enregistré",
+      "transfer": "Transféré",
+      "renew": "Renouvelé",
+      "claim": "Réclamé",
+      "revoke": "Révoqué"
+    },
+    "filter": {
+      "active": "Actifs",
+      "expired": "Expirés",
+      "revoked": "Révoqués",
+      "all": "Tous"
+    },
+    "field": {
+      "status": "Statut",
+      "resolvesTo": "Pointe vers",
+      "targetType": "Type de cible",
+      "owner": "Propriétaire",
+      "registeredAt": "Enregistré",
+      "expiresAt": "Expire",
+      "lastEventLedger": "Dernier registre d'événement"
     }
   }
 }

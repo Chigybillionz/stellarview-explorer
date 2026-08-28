@@ -16,11 +16,12 @@
     "learn": "학습",
     "watchlist": "관심목록",
     "collapse": "접기",
-    "toggleMenu": "메뉴 전환"
+    "toggleMenu": "메뉴 전환",
+    "domains": "도메인"
   },
   "search": {
     "placeholder": "트랜잭션, 계정 검색...",
-    "inputPlaceholder": "트랜잭션 해시, 계정, 자산, 컨트랙트 또는 원장 검색...",
+    "inputPlaceholder": "트랜잭션 해시, 계정, 자산, 컨트랙트, 레저 또는 name.xlm으로 검색...",
     "noResults": "결과를 찾을 수 없습니다.",
     "noResultsHint": "트랜잭션 해시, 계정 주소 또는 원장 번호를 입력해 보세요.",
     "searchAs": "{type}(으)로 검색",
@@ -29,7 +30,13 @@
     "quickAccess": "빠른 접근",
     "recentTransactions": "최근 트랜잭션",
     "latestLedgers": "최신 원장",
-    "smartContracts": "스마트 컨트랙트"
+    "smartContracts": "스마트 컨트랙트",
+    "domainResolving": "도메인 확인 중...",
+    "domainResolved": "{address}(으)로 연결됩니다",
+    "domainNotFound": "등록되지 않은 도메인입니다",
+    "domainExpired": "이 도메인의 등록이 만료되었습니다",
+    "domainUnsupported": "이 네트워크에서는 도메인 확인을 사용할 수 없습니다",
+    "domainError": "도메인을 확인할 수 없습니다. 다시 시도해 주세요."
   },
   "entityTypes": {
     "transaction": "트랜잭션",
@@ -37,6 +44,7 @@
     "contract": "컨트랙트",
     "asset": "자산",
     "ledger": "원장",
+    "domain": "도메인",
     "unknown": "검색"
   },
   "common": {
@@ -1197,6 +1205,60 @@
     "notAvailable": {
       "title": "풀 기록을 아직 사용할 수 없습니다",
       "description": "인덱서가 이 풀의 준비금을 시간 경과에 따라 처리하면 여기에 과거 깊이가 표시됩니다."
+    }
+  },
+  "domains": {
+    "alsoKnownAs": "{name}(으)로도 알려짐",
+    "notAvailable": "도메인 준비 중",
+    "notAvailableHint": "도메인 데이터를 아직 사용할 수 없습니다. 인덱서가 레지스트리를 처리하면 표시됩니다.",
+    "more": "외 {count}개",
+    "title": "도메인",
+    "subtitle": "네트워크에 등록된 Soroban 도메인",
+    "findDomain": "도메인 찾기",
+    "namePlaceholder": "alice.xlm",
+    "invalidName": ".xlm으로 끝나는 이름을 입력하세요",
+    "registered": "등록된 도메인",
+    "noneRegistered": "도메인을 찾을 수 없습니다",
+    "noneRegisteredHint": "이 필터와 일치하는 등록이 없습니다.",
+    "notRegistered": "등록되지 않은 도메인",
+    "notRegisteredHint": "레지스트리에 이 이름으로 된 기록이 없습니다.",
+    "registration": "등록 정보",
+    "history": "이벤트 기록",
+    "noEvents": "기록된 이벤트 없음",
+    "noEventsHint": "이 이름에 대한 레지스트리 이벤트가 아직 색인되지 않았습니다.",
+    "previous": "이전",
+    "next": "다음",
+    "pageNumber": "{page} 페이지",
+    "status": {
+      "active": "활성",
+      "expired": "만료됨",
+      "revoked": "취소됨"
+    },
+    "target": {
+      "account": "계정",
+      "contract": "컨트랙트"
+    },
+    "event": {
+      "register": "등록",
+      "transfer": "이전",
+      "renew": "갱신",
+      "claim": "청구",
+      "revoke": "취소"
+    },
+    "filter": {
+      "active": "활성",
+      "expired": "만료",
+      "revoked": "취소",
+      "all": "전체"
+    },
+    "field": {
+      "status": "상태",
+      "resolvesTo": "연결 대상",
+      "targetType": "대상 유형",
+      "owner": "소유자",
+      "registeredAt": "등록일",
+      "expiresAt": "만료일",
+      "lastEventLedger": "마지막 이벤트 레저"
     }
   }
 }

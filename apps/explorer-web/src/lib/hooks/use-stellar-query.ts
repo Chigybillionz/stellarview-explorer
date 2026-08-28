@@ -342,6 +342,42 @@ export function useNetworkStats() {
   return useQuery(stellarQueries.networkStats(network));
 }
 
+// Hook for Soroban Domains forward resolution (name.xlm -> address)
+export function useDomainResolution(name: string, enabled = true) {
+  const { network } = useNetwork();
+  return useQuery({
+    ...stellarQueries.domainResolution(network, name),
+    enabled: enabled && name.length > 0,
+  });
+}
+
+// Hook for the Soroban Domains reverse lookup (address -> owned domains)
+export function useDomainsByAddress(address: string, enabled = true) {
+  const { network } = useNetwork();
+  return useQuery({
+    ...stellarQueries.domainsByAddress(network, address),
+    enabled: enabled && address.length > 0,
+  });
+}
+
+// Hook for one cursor page of the Soroban Domains list
+export function useDomainsList(
+  status: import("@/lib/indexer").DomainStatus | "all" = "active",
+  cursor = ""
+) {
+  const { network } = useNetwork();
+  return useQuery(stellarQueries.domainsList(network, status, cursor));
+}
+
+// Hook for a single Soroban Domain and its event history
+export function useDomainDetail(name: string) {
+  const { network } = useNetwork();
+  return useQuery({
+    ...stellarQueries.domainDetail(network, name),
+    enabled: name.length > 0,
+  });
+}
+
 // Hook for indexer time-series analytics
 export function useIndexerTimeSeries(
   metric: import("@/lib/indexer").TimeSeriesMetric,
