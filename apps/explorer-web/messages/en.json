@@ -318,7 +318,7 @@
     "readWriteConsole": "Read/Write",
     "console": {
       "title": "Contract Console (SEP-48 Spec)",
-      "specSummary": "{functions} Functions \u2022 {structs} Structs \u2022 {unions} Unions \u2022 {enums} Enums",
+      "specSummary": "{functions} Functions • {structs} Structs • {unions} Unions • {enums} Enums",
       "connecting": "Connecting...",
       "connectWallet": "Connect Wallet",
       "disconnectWallet": "Disconnect Wallet",
@@ -353,6 +353,34 @@
       "copiedXDR": "Copied XDR",
       "transactionExecuted": "Transaction Executed Successfully:",
       "voidNull": "void (null)"
+    },
+    "typedInput": {
+      "maxRecursionDepth": "Maximum recursion depth reached",
+      "enterType": "Enter {kind}",
+      "badgeAddress": "address",
+      "addressPlaceholder": "G... (account) or C... (contract)",
+      "addressValidation": "Must be a valid 56-character Stellar Address (G...) or Contract ID (C...)",
+      "hexPlaceholder": "Hex string (e.g. 0x1234...)",
+      "enterInteger": "Enter {kind} integer",
+      "badgeBool": "bool",
+      "badgeOption": "Option",
+      "setToNone": "Set to None",
+      "setValue": "Set Value",
+      "noneVoid": "None (Void)",
+      "labelVector": "Vector",
+      "badgeVec": "Vec",
+      "addItem": "Add item",
+      "emptyArray": "Empty array []",
+      "labelMap": "Map",
+      "badgeMap": "Map",
+      "addPair": "Add pair",
+      "emptyMap": "Empty map",
+      "udtFallback": "UDT {name}",
+      "badgeStruct": "struct",
+      "badgeUnion": "union",
+      "selectVariant": "Select variant",
+      "tuplePayloadArgs": "Tuple Payload Arguments:",
+      "valuePlaceholder": "Value"
     }
   },
   "watchlist": {

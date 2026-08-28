@@ -318,7 +318,7 @@
     "readWriteConsole": "读写控制台",
     "console": {
       "title": "合约控制台（SEP-48 规范）",
-      "specSummary": "{functions} 个函数 \u2022 {structs} 个结构体 \u2022 {unions} 个联合体 \u2022 {enums} 个枚举",
+      "specSummary": "{functions} 个函数 • {structs} 个结构体 • {unions} 个联合体 • {enums} 个枚举",
       "connecting": "连接中...",
       "connectWallet": "连接钱包",
       "disconnectWallet": "断开钱包",
@@ -353,6 +353,34 @@
       "copiedXDR": "XDR 已复制",
       "transactionExecuted": "交易执行成功：",
       "voidNull": "空（null）"
+    },
+    "typedInput": {
+      "maxRecursionDepth": "已达到最大递归深度",
+      "enterType": "输入 {kind}",
+      "badgeAddress": "地址",
+      "addressPlaceholder": "G... (账户) 或 C... (合约)",
+      "addressValidation": "必须是有效的56字符 Stellar 地址(G...)或合约ID(C...)",
+      "hexPlaceholder": "十六进制字符串 (例如 0x1234...)",
+      "enterInteger": "输入 {kind} 整数",
+      "badgeBool": "bool",
+      "badgeOption": "Option",
+      "setToNone": "设为 None",
+      "setValue": "设置值",
+      "noneVoid": "None (Void)",
+      "labelVector": "向量",
+      "badgeVec": "Vec",
+      "addItem": "添加项",
+      "emptyArray": "空数组 []",
+      "labelMap": "映射",
+      "badgeMap": "Map",
+      "addPair": "添加键值对",
+      "emptyMap": "Empty map",
+      "udtFallback": "UDT {name}",
+      "badgeStruct": "struct",
+      "badgeUnion": "union",
+      "selectVariant": "选择变体",
+      "tuplePayloadArgs": "元组有效载荷参数:",
+      "valuePlaceholder": "值"
     }
   },
   "watchlist": {

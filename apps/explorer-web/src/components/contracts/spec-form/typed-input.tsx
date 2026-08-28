@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { SpecTypeDef, SpecUdt } from "@/lib/stellar/spec-decoder";
 import { Plus, Trash2, HelpCircle } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useTranslations } from "next-intl";
 
 interface TypedInputProps {
   specType: SpecTypeDef;
@@ -35,9 +36,11 @@ export function TypedInput({
   doc,
   depth = 0,
 }: TypedInputProps) {
+  const t = useTranslations("contract.typedInput");
+
   if (depth > 6) {
     return (
-      <div className="text-muted-foreground text-xs italic">Maximum recursion depth reached</div>
+      <div className="text-muted-foreground text-xs italic">{t("maxRecursionDepth")}</div>
     );
   }
 
@@ -73,7 +76,7 @@ export function TypedInput({
           value={strValue}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          placeholder={`Enter ${kind}`}
+          placeholder={t("enterType", { kind })}
           className="font-mono text-xs"
         />
       </div>
@@ -92,7 +95,7 @@ export function TypedInput({
           <div className="flex items-center gap-1.5">
             <label className="text-foreground text-xs font-medium">{label}</label>
             <Badge variant="outline" className="px-1 py-0 font-mono text-[10px]">
-              address
+              {t("badgeAddress")}
             </Badge>
             {doc && <DocTooltip doc={doc} />}
           </div>
@@ -102,12 +105,12 @@ export function TypedInput({
           value={strValue}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          placeholder="G... (account) or C... (contract)"
+          placeholder={t("addressPlaceholder")}
           className={`font-mono text-xs ${!isValid ? "border-destructive focus-visible:ring-destructive" : ""}`}
         />
         {!isValid && (
           <p className="text-destructive text-[11px]">
-            Must be a valid 56-character Stellar Address (G...) or Contract ID (C...)
+            {t("addressValidation")}
           </p>
         )}
       </div>
@@ -134,7 +137,7 @@ export function TypedInput({
           value={strValue}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          placeholder="Hex string (e.g. 0x1234...)"
+          placeholder={t("hexPlaceholder")}
           className="font-mono text-xs"
         />
       </div>
@@ -168,7 +171,7 @@ export function TypedInput({
           value={strValue}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          placeholder={`Enter ${kind} integer`}
+          placeholder={t("enterInteger", { kind })}
           className="font-mono text-xs"
         />
       </div>
@@ -184,7 +187,7 @@ export function TypedInput({
           <div className="flex items-center gap-1.5">
             <label className="text-foreground text-xs font-medium">{label}</label>
             <Badge variant="outline" className="px-1 py-0 font-mono text-[10px]">
-              bool
+              {t("badgeBool")}
             </Badge>
             {doc && <DocTooltip doc={doc} />}
           </div>
@@ -211,9 +214,9 @@ export function TypedInput({
       <div className="border-border bg-muted/20 space-y-2 rounded-md border p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <label className="text-foreground text-xs font-medium">{label || "Option"}</label>
+            <label className="text-foreground text-xs font-medium">{label || t("badgeOption")}</label>
             <Badge variant="outline" className="font-mono text-[10px]">
-              Option
+              {t("badgeOption")}
             </Badge>
           </div>
           <Button
@@ -226,7 +229,7 @@ export function TypedInput({
             }
             disabled={disabled}
           >
-            {isEnabled ? "Set to None" : "Set Value"}
+            {isEnabled ? t("setToNone") : t("setValue")}
           </Button>
         </div>
         {isEnabled ? (
@@ -239,7 +242,7 @@ export function TypedInput({
             depth={depth + 1}
           />
         ) : (
-          <p className="text-muted-foreground text-[11px] italic">None (Void)</p>
+          <p className="text-muted-foreground text-[11px] italic">{t("noneVoid")}</p>
         )}
       </div>
     );
@@ -270,9 +273,9 @@ export function TypedInput({
       <div className="border-border bg-muted/20 space-y-3 rounded-md border p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <label className="text-foreground text-xs font-medium">{label || "Vector"}</label>
+            <label className="text-foreground text-xs font-medium">{label || t("labelVector")}</label>
             <Badge variant="outline" className="font-mono text-[10px]">
-              Vec
+              {t("badgeVec")}
             </Badge>
           </div>
           <Button
@@ -283,11 +286,11 @@ export function TypedInput({
             onClick={handleAddItem}
             disabled={disabled}
           >
-            <Plus className="size-3" /> Add item
+            <Plus className="size-3" /> {t("addItem")}
           </Button>
         </div>
         {items.length === 0 ? (
-          <p className="text-muted-foreground text-[11px] italic">Empty array []</p>
+          <p className="text-muted-foreground text-[11px] italic">{t("emptyArray")}</p>
         ) : (
           <div className="space-y-2">
             {items.map((item, idx) => (
@@ -360,9 +363,9 @@ export function TypedInput({
       <div className="border-border bg-muted/20 space-y-3 rounded-md border p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <label className="text-foreground text-xs font-medium">{label || "Map"}</label>
+            <label className="text-foreground text-xs font-medium">{label || t("labelMap")}</label>
             <Badge variant="outline" className="font-mono text-[10px]">
-              Map
+              {t("badgeMap")}
             </Badge>
           </div>
           <Button
@@ -373,11 +376,11 @@ export function TypedInput({
             onClick={handleAddPair}
             disabled={disabled}
           >
-            <Plus className="size-3" /> Add pair
+            <Plus className="size-3" /> {t("addPair")}
           </Button>
         </div>
         {pairs.length === 0 ? (
-          <p className="text-muted-foreground text-[11px] italic">Empty map &#123;&#125;</p>
+          <p className="text-muted-foreground text-[11px] italic">{t("emptyMap")}</p>
         ) : (
           <div className="space-y-3">
             {pairs.map((pair, idx) => (
@@ -443,7 +446,7 @@ export function TypedInput({
             }
             onChange={(e) => onChange(e.target.value)}
             disabled={disabled}
-            placeholder={`UDT ${udtName}`}
+            placeholder={t("udtFallback", { name: udtName })}
             className="font-mono text-xs"
           />
         </div>
@@ -463,7 +466,7 @@ export function TypedInput({
           <div className="flex items-center gap-2">
             <label className="text-foreground text-xs font-medium">{label || udt.name}</label>
             <Badge variant="secondary" className="font-mono text-[10px]">
-              struct {udt.name}
+              {t("badgeStruct")} {udt.name}
             </Badge>
             {udt.doc && <DocTooltip doc={udt.doc} />}
           </div>
@@ -550,7 +553,7 @@ export function TypedInput({
           <div className="flex items-center gap-2">
             <label className="text-foreground text-xs font-medium">{label || udt.name}</label>
             <Badge variant="secondary" className="font-mono text-[10px]">
-              union {udt.name}
+              {t("badgeUnion")} {udt.name}
             </Badge>
             {udt.doc && <DocTooltip doc={udt.doc} />}
           </div>
@@ -558,7 +561,7 @@ export function TypedInput({
           <div className="space-y-2">
             <Select value={selectedVariant} onValueChange={handleVariantSelect} disabled={disabled}>
               <SelectTrigger className="font-mono text-xs">
-                <SelectValue placeholder="Select variant" />
+                <SelectValue placeholder={t("selectVariant")} />
               </SelectTrigger>
               <SelectContent>
                 {udt.cases.map((c) => (
@@ -572,7 +575,7 @@ export function TypedInput({
             {matchedCase && matchedCase.kind === "tuple" && (
               <div className="border-primary/30 space-y-2 border-l-2 pt-2 pl-3">
                 <p className="text-muted-foreground text-[11px] font-medium">
-                  Tuple Payload Arguments:
+                  {t("tuplePayloadArgs")}
                 </p>
                 {matchedCase.types.map((payloadType, idx) => (
                   <TypedInput
@@ -602,7 +605,7 @@ export function TypedInput({
       value={defaultStrValue}
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
-      placeholder="Value"
+      placeholder={t("valuePlaceholder")}
       className="font-mono text-xs"
     />
   );

@@ -318,7 +318,7 @@
     "readWriteConsole": "読み取り/書き込み",
     "console": {
       "title": "コントラクトコンソール（SEP-48 仕様）",
-      "specSummary": "{functions} 関数 \u2022 {structs} 構造体 \u2022 {unions} 共用体 \u2022 {enums} 列挙型",
+      "specSummary": "{functions} 関数 • {structs} 構造体 • {unions} 共用体 • {enums} 列挙型",
       "connecting": "接続中...",
       "connectWallet": "ウォレットを接続",
       "disconnectWallet": "ウォレットを切断",
@@ -353,6 +353,34 @@
       "copiedXDR": "XDR をコピー済み",
       "transactionExecuted": "トランザクションが正常に実行されました:",
       "voidNull": "空 (null)"
+    },
+    "typedInput": {
+      "maxRecursionDepth": "最大再帰深度に達しました",
+      "enterType": "{kind}を入力",
+      "badgeAddress": "アドレス",
+      "addressPlaceholder": "G... (アカウント) または C... (コントラクト)",
+      "addressValidation": "有効な56文字のStellarアドレス(G...)またはコントラクトID(C...)が必要です",
+      "hexPlaceholder": "16進文字列 (例: 0x1234...)",
+      "enterInteger": "{kind}整数を入力",
+      "badgeBool": "bool",
+      "badgeOption": "Option",
+      "setToNone": "Noneに設定",
+      "setValue": "値を設定",
+      "noneVoid": "None (Void)",
+      "labelVector": "ベクター",
+      "badgeVec": "Vec",
+      "addItem": "アイテムを追加",
+      "emptyArray": "空の配列 []",
+      "labelMap": "マップ",
+      "badgeMap": "Map",
+      "addPair": "ペアを追加",
+      "emptyMap": "Empty map",
+      "udtFallback": "UDT {name}",
+      "badgeStruct": "struct",
+      "badgeUnion": "union",
+      "selectVariant": "バリアントを選択",
+      "tuplePayloadArgs": "タプルペイロード引数:",
+      "valuePlaceholder": "値"
     }
   },
   "watchlist": {

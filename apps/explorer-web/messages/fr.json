@@ -318,7 +318,7 @@
     "readWriteConsole": "Lecture/Écriture",
     "console": {
       "title": "Console de Contrat (Spécification SEP-48)",
-      "specSummary": "{functions} Fonctions \u2022 {structs} Structs \u2022 {unions} Unions \u2022 {enums} Enums",
+      "specSummary": "{functions} Fonctions • {structs} Structs • {unions} Unions • {enums} Enums",
       "connecting": "Connexion...",
       "connectWallet": "Connecter le Portefeuille",
       "disconnectWallet": "Déconnecter le Portefeuille",
@@ -353,6 +353,34 @@
       "copiedXDR": "XDR Copié",
       "transactionExecuted": "Transaction Exécutée avec Succès :",
       "voidNull": "vide (nul)"
+    },
+    "typedInput": {
+      "maxRecursionDepth": "Profondeur de récursion maximale atteinte",
+      "enterType": "Entrez {kind}",
+      "badgeAddress": "adresse",
+      "addressPlaceholder": "G... (compte) ou C... (contrat)",
+      "addressValidation": "Doit être une adresse Stellar valide de 56 caractères (G...) ou un ID de contrat (C...)",
+      "hexPlaceholder": "Chaîne hexadécimale (ex. 0x1234...)",
+      "enterInteger": "Entrez l'entier {kind}",
+      "badgeBool": "bool",
+      "badgeOption": "Option",
+      "setToNone": "Définir sur Aucun",
+      "setValue": "Définir la valeur",
+      "noneVoid": "Aucun (Void)",
+      "labelVector": "Vecteur",
+      "badgeVec": "Vec",
+      "addItem": "Ajouter un élément",
+      "emptyArray": "Tableau vide []",
+      "labelMap": "Carte",
+      "badgeMap": "Map",
+      "addPair": "Ajouter une paire",
+      "emptyMap": "Empty map",
+      "udtFallback": "UDT {name}",
+      "badgeStruct": "struct",
+      "badgeUnion": "union",
+      "selectVariant": "Sélectionner une variante",
+      "tuplePayloadArgs": "Arguments de charge tuple :",
+      "valuePlaceholder": "Valeur"
     }
   },
   "watchlist": {

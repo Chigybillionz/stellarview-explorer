@@ -64,8 +64,7 @@ export function ContractConsole({ contractId }: ContractConsoleProps) {
           setWalletError(t("unableToRetrieveKey"));
         }
       }
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
+    } catch {
       setWalletError(t("failedToConnectWallet"));
     } finally {
       setIsConnecting(false);

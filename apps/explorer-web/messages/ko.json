@@ -318,7 +318,7 @@
     "readWriteConsole": "읽기/쓰기",
     "console": {
       "title": "스마트 계약 콘솔 (SEP-48 사양)",
-      "specSummary": "{functions} 함수 \u2022 {structs} 구조체 \u2022 {unions} 공용체 \u2022 {enums} 열거형",
+      "specSummary": "{functions} 함수 • {structs} 구조체 • {unions} 공용체 • {enums} 열거형",
       "connecting": "연결 중...",
       "connectWallet": "지갑 연결",
       "disconnectWallet": "지갑 연결 해제",
@@ -353,6 +353,34 @@
       "copiedXDR": "XDR 복사됨",
       "transactionExecuted": "트랜잭션이 성공적으로 실행되었습니다:",
       "voidNull": "빈 값 (null)"
+    },
+    "typedInput": {
+      "maxRecursionDepth": "최대 재귀 깊이에 도달했습니다",
+      "enterType": "{kind} 입력",
+      "badgeAddress": "주소",
+      "addressPlaceholder": "G... (계정) 또는 C... (컨트랙트)",
+      "addressValidation": "유효한 56자 Stellar 주소(G...) 또는 컨트랙트 ID(C...)여야 합니다",
+      "hexPlaceholder": "16진수 문자열 (예: 0x1234...)",
+      "enterInteger": "{kind} 정수 입력",
+      "badgeBool": "bool",
+      "badgeOption": "Option",
+      "setToNone": "None으로 설정",
+      "setValue": "값 설정",
+      "noneVoid": "None (Void)",
+      "labelVector": "벡터",
+      "badgeVec": "Vec",
+      "addItem": "항목 추가",
+      "emptyArray": "빈 배열 []",
+      "labelMap": "맵",
+      "badgeMap": "Map",
+      "addPair": "쌍 추가",
+      "emptyMap": "Empty map",
+      "udtFallback": "UDT {name}",
+      "badgeStruct": "struct",
+      "badgeUnion": "union",
+      "selectVariant": "변형 선택",
+      "tuplePayloadArgs": "튜플 페이로드 인수:",
+      "valuePlaceholder": "값"
     }
   },
   "watchlist": {

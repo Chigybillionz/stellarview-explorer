@@ -68,7 +68,7 @@ describe("contract-client", () => {
     });
 
     it("defaults to testnet for unknown network", () => {
-      expect(getNetworkPassphrase("unknown" as any)).toContain("Test");
+      expect(getNetworkPassphrase("unknown" as never)).toContain("Test");
     });
   });
 
@@ -143,7 +143,7 @@ describe("contract-client", () => {
             retval: mockRetval,
           },
         }),
-      } as any);
+      } as never);
 
       const res = await simulateContractRead("testnet", VALID_CONTRACT_ID, "my_func", []);
       expect(res.success).toBe(true);
@@ -158,7 +158,7 @@ describe("contract-client", () => {
         simulateTransaction: vi.fn().mockResolvedValue({
           error: "HostError: ContractNotInvokable",
         }),
-      } as any);
+      } as never);
 
       const res = await simulateContractRead("testnet", VALID_CONTRACT_ID, "my_func", []);
       expect(res.success).toBe(false);
@@ -168,7 +168,7 @@ describe("contract-client", () => {
     it("returns simulationError on client network crash/throw", async () => {
       vi.mocked(getRpcClient).mockReturnValue({
         getAccount: vi.fn().mockRejectedValue(new Error("Network connection lost")),
-      } as any);
+      } as never);
 
       const res = await simulateContractRead("testnet", VALID_CONTRACT_ID, "my_func", []);
       expect(res.success).toBe(false);
@@ -193,7 +193,7 @@ describe("contract-client", () => {
           minResourceFee: 150,
           transactionData: mockTransactionData,
         }),
-      } as any);
+      } as never);
 
       const res = await simulateContractWrite("testnet", VALID_CONTRACT_ID, "my_write_func", []);
       expect(res.success).toBe(true);
@@ -209,7 +209,7 @@ describe("contract-client", () => {
         simulateTransaction: vi.fn().mockResolvedValue({
           error: "BudgetExceeded during write simulation",
         }),
-      } as any);
+      } as never);
 
       const res = await simulateContractWrite("testnet", VALID_CONTRACT_ID, "my_write_func", []);
       expect(res.success).toBe(false);
@@ -219,7 +219,7 @@ describe("contract-client", () => {
     it("returns resourceEstimationError on client network exception", async () => {
       vi.mocked(getRpcClient).mockReturnValue({
         getAccount: vi.fn().mockRejectedValue(new Error("RPC Timeout")),
-      } as any);
+      } as never);
 
       const res = await simulateContractWrite("testnet", VALID_CONTRACT_ID, "my_write_func", []);
       expect(res.success).toBe(false);
@@ -248,7 +248,7 @@ describe("contract-client", () => {
           status: "SUCCESS",
           returnValue: "dummyScVal",
         }),
-      } as any);
+      } as never);
 
       vi.mocked(freighter.signTransaction).mockImplementation((xdr) => Promise.resolve(xdr));
 
@@ -275,7 +275,7 @@ describe("contract-client", () => {
       vi.mocked(getRpcClient).mockReturnValue({
         getAccount: vi.fn().mockResolvedValue(mockAccount),
         prepareTransaction: vi.fn().mockImplementation((tx) => tx),
-      } as any);
+      } as never);
 
       vi.mocked(freighter.signTransaction).mockRejectedValue(new Error("User declined signing"));
 
@@ -300,7 +300,7 @@ describe("contract-client", () => {
           status: "ERROR",
           errorResult: "txFailed: bad fee",
         }),
-      } as any);
+      } as never);
 
       vi.mocked(freighter.signTransaction).mockImplementation((xdr) => Promise.resolve(xdr));
 
@@ -329,7 +329,7 @@ describe("contract-client", () => {
           status: "FAILED",
           resultXdr: "txFailed: execution reverted",
         }),
-      } as any);
+      } as never);
 
       vi.mocked(freighter.signTransaction).mockImplementation((xdr) => Promise.resolve(xdr));
 

@@ -273,7 +273,7 @@ export function FunctionForm({
             <AlertTriangle className="size-4" />
             <AlertTitle>{t("simulationError")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">
-              {t(readResult.error as any)}
+              {t(readResult.error ?? "genericFailure")}
             </AlertDescription>
           </Alert>
         )}
@@ -284,7 +284,7 @@ export function FunctionForm({
             <AlertTriangle className="size-4" />
             <AlertTitle>{t("resourceEstimationError")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">
-              {t(writeSimResult.error as any)}
+              {t(writeSimResult.error ?? "genericFailure")}
             </AlertDescription>
           </Alert>
         )}
@@ -295,7 +295,7 @@ export function FunctionForm({
             <AlertTriangle className="size-4" />
             <AlertTitle>{t("submissionFailure")}</AlertTitle>
             <AlertDescription className="font-mono text-xs">
-              {t(writeExecResult.error as any)}
+              {t(writeExecResult.error ?? "genericFailure")}
             </AlertDescription>
           </Alert>
         )}

@@ -318,7 +318,7 @@
     "readWriteConsole": "Lesen/Schreiben",
     "console": {
       "title": "Vertragskonsole (SEP-48 Spezifikation)",
-      "specSummary": "{functions} Funktionen \u2022 {structs} Structs \u2022 {unions} Unionen \u2022 {enums} Enums",
+      "specSummary": "{functions} Funktionen • {structs} Structs • {unions} Unionen • {enums} Enums",
       "connecting": "Verbinden...",
       "connectWallet": "Wallet Verbinden",
       "disconnectWallet": "Wallet Trennen",
@@ -353,6 +353,34 @@
       "copiedXDR": "XDR Kopiert",
       "transactionExecuted": "Transaktion Erfolgreich Ausgeführt:",
       "voidNull": "leer (null)"
+    },
+    "typedInput": {
+      "maxRecursionDepth": "Maximale Rekursionstiefe erreicht",
+      "enterType": "{kind} eingeben",
+      "badgeAddress": "Adresse",
+      "addressPlaceholder": "G... (Konto) oder C... (Vertrag)",
+      "addressValidation": "Muss eine gültige 56-Zeichen Stellar-Adresse (G...) oder Vertrags-ID (C...) sein",
+      "hexPlaceholder": "Hexadezimalstring (z.B. 0x1234...)",
+      "enterInteger": "{kind} Ganzzahl eingeben",
+      "badgeBool": "Bool",
+      "badgeOption": "Option",
+      "setToNone": "Auf None setzen",
+      "setValue": "Wert setzen",
+      "noneVoid": "None (Void)",
+      "labelVector": "Vektor",
+      "badgeVec": "Vec",
+      "addItem": "Element hinzufügen",
+      "emptyArray": "Leeres Array []",
+      "labelMap": "Karte",
+      "badgeMap": "Map",
+      "addPair": "Paar hinzufügen",
+      "emptyMap": "Empty map",
+      "udtFallback": "UDT {name}",
+      "badgeStruct": "struct",
+      "badgeUnion": "union",
+      "selectVariant": "Variante wählen",
+      "tuplePayloadArgs": "Tuple-Nutzlast-Argumente:",
+      "valuePlaceholder": "Wert"
     }
   },
   "watchlist": {
