@@ -39,9 +39,7 @@ export function TypedInput({
   const t = useTranslations("contract.typedInput");
 
   if (depth > 6) {
-    return (
-      <div className="text-muted-foreground text-xs italic">{t("maxRecursionDepth")}</div>
-    );
+    return <div className="text-muted-foreground text-xs italic">{t("maxRecursionDepth")}</div>;
   }
 
   const kind = specType.kind;
@@ -108,11 +106,7 @@ export function TypedInput({
           placeholder={t("addressPlaceholder")}
           className={`font-mono text-xs ${!isValid ? "border-destructive focus-visible:ring-destructive" : ""}`}
         />
-        {!isValid && (
-          <p className="text-destructive text-[11px]">
-            {t("addressValidation")}
-          </p>
-        )}
+        {!isValid && <p className="text-destructive text-[11px]">{t("addressValidation")}</p>}
       </div>
     );
   }
@@ -214,7 +208,9 @@ export function TypedInput({
       <div className="border-border bg-muted/20 space-y-2 rounded-md border p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <label className="text-foreground text-xs font-medium">{label || t("badgeOption")}</label>
+            <label className="text-foreground text-xs font-medium">
+              {label || t("badgeOption")}
+            </label>
             <Badge variant="outline" className="font-mono text-[10px]">
               {t("badgeOption")}
             </Badge>
@@ -273,7 +269,9 @@ export function TypedInput({
       <div className="border-border bg-muted/20 space-y-3 rounded-md border p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <label className="text-foreground text-xs font-medium">{label || t("labelVector")}</label>
+            <label className="text-foreground text-xs font-medium">
+              {label || t("labelVector")}
+            </label>
             <Badge variant="outline" className="font-mono text-[10px]">
               {t("badgeVec")}
             </Badge>
